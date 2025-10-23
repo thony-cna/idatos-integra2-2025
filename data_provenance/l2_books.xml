@@ -5,7 +5,11 @@
     <prov:entity prov:id="ex:l2_books">
         <prov:label>Tabla l2_books</prov:label>
         <prov:description>Tabla derivada de Books Dataset, con metadatos principales de libros incluyendo título, autor, año de publicación, editorial y URLs de imágenes.</prov:description>
-        <prov:creationDate>2025-10-22T00:30:00</prov:creationDate>
+        <prov:creationDate>fecha</prov:creationDate>
+        <prov:source>
+            <prov:url>https://www.kaggle.com/datasets/saurabhbagchi/books-dataset</prov:url>
+            <prov:downloadDate>2025-09-02T18:39:21</prov:downloadDate>
+        </prov:source>
         <prov:columns>
             <prov:column>
                 <prov:name>isbn</prov:name>
@@ -51,11 +55,10 @@
     </prov:entity>
 
     <!-- Actividad: Creación de l2_books -->
-    <prov:activity prov:id="ex:generate_ln_books"
-                   prov:startTime="2025-10-22T00:00:00"
-                   prov:endTime="2025-10-22T00:15:00">
-        <prov:label>Integración de Books Dataset y Amazon Books Reviews</prov:label>
-        <prov:description>Proceso de consolidación y limpieza de datos para generar la tabla ln_books con todos los metadatos y campos necesarios.</prov:description>
+    <prov:activity prov:id="ex:generate_l2_books"
+                   prov:startTime="2025-10-22T00:00:00">
+        <prov:label>Generar la tabla de l2_books</prov:label>
+        <prov:description>Importar los datos del dataset de Books Dataset desde el CSV, cargandolos en una BD de postgresql</prov:description>
     </prov:activity>
 
     <!-- Agentes involucrados -->
@@ -74,12 +77,8 @@
     <!-- Relaciones -->
     <prov:wasGeneratedBy prov:entity="ex:l2_books"
                          prov:activity="ex:generate_l2_books"/>
-    <prov:wasDerivedFrom prov:generatedEntity="ex:l2_books"
-                         prov:usedEntity="ex:books_dataset"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_books"
                             prov:agent="ex:user_me"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_books"
-                            prov:agent="ex:script_etl"/>
-    <prov:used prov:activity="ex:generate_l2_books"
-               prov:entity="ex:books_dataset"/>
+                            prov:agent="ex:postgresql_db"/>
 </prov:document>
