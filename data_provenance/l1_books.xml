@@ -1,0 +1,99 @@
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <!-- Entidad: Tabla l1_books -->
+    <prov:entity prov:id="ex:l1_books">
+        <prov:label>Tabla l1_books</prov:label>
+        <prov:description>Tabla consolidada con metadatos de libros y reseñas, creada a partir de Books Dataset y Amazon Books Reviews.</prov:description>
+        <prov:creationDate>2025-10-22T00:00:00</prov:creationDate>
+        <prov:columns>
+            <prov:column>
+                <prov:name>title</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Título del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>description</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Descripción o sinopsis del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>authors</prov:name>
+                <prov:type>list<text></prov:type>
+                <prov:reason>Lista de autores del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>image</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>URL de la imagen del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>previewLink</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Enlace de vista previa del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>publisher</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Editorial que publicó el libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>publishedDate</prov:name>
+                <prov:type>date</prov:type>
+                <prov:reason>Fecha o año de publicación del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>infoLink</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Enlace con información adicional del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>categories</prov:name>
+                <prov:type>list<text>;</prov:type>
+                <prov:reason>Categorías o géneros del libro.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>ratingsCount</prov:name>
+                <prov:type>real</prov:type>
+                <prov:reason>Promedio en alguna ponderación.</prov:reason>
+            </prov:column>
+        </prov:columns>
+    </prov:entity>
+
+    <!-- Actividad: Creación de ln_books -->
+    <prov:activity prov:id="ex:generate_ln_books"
+                   prov:startTime="2025-10-22T00:00:00"
+                   prov:endTime="2025-10-22T00:15:00">
+        <prov:label>Integración de Books Dataset y Amazon Books Reviews</prov:label>
+        <prov:description>Proceso de consolidación y limpieza de datos para generar la tabla ln_books con todos los metadatos y campos necesarios.</prov:description>
+    </prov:activity>
+
+    <!-- Agentes involucrados -->
+    <prov:agent prov:id="ex:user_me">
+        <prov:label>Usuario Responsable</prov:label>
+        <prov:type>prov:Person</prov:type>
+        <prov:role>Responsable de la integración y limpieza de los datasets para generar l1_books.</prov:role>
+    </prov:agent>
+
+    <prov:agent prov:id="ex:script_etl">
+        <prov:label>Script de ETL</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Script o herramienta automatizada que realizó la integración de los datasets.</prov:role>
+    </prov:agent>
+
+    <!-- Relaciones -->
+    <prov:wasGeneratedBy prov:entity="ex:l1_books"
+                         prov:activity="ex:generate_l1_books"/>
+    <prov:wasDerivedFrom prov:generatedEntity="ex:l1_books"
+                         prov:usedEntity="ex:books_dataset"/>
+    <prov:wasDerivedFrom prov:generatedEntity="ex:l1_books"
+                         prov:usedEntity="ex:amazon_reviews"/>
+    <prov:wasAssociatedWith prov:activity="ex:generate_l1_books"
+                            prov:agent="ex:user_me"/>
+    <prov:wasAssociatedWith prov:activity="ex:generate_l1_books"
+                            prov:agent="ex:script_etl"/>
+    <prov:used prov:activity="ex:generate_l1_books"
+               prov:entity="ex:books_dataset"/>
+    <prov:used prov:activity="ex:generate_l1_books"
+               prov:entity="ex:amazon_reviews"/>
+</prov:document>
