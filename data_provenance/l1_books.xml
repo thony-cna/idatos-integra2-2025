@@ -7,8 +7,8 @@
         <prov:description>Tabla consolidada con metadatos de libros y reseñas, creada a partir de Books Dataset y Amazon Books Reviews.</prov:description>
         <prov:creationDate>fecha</prov:creationDate>
         <prov:source>
-            <prov:url>ruta_o_url_de_la_tabla_l1_books</prov:url>
-            <prov:downloadDate>fecha_de_descarga</prov:downloadDate>
+            <prov:url>https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews</prov:url>
+            <prov:downloadDate>2025-09-02T18:39:21</prov:downloadDate>
         </prov:source>
         <prov:columns>
             <prov:column>
