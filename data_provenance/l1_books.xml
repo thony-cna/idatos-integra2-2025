@@ -5,7 +5,11 @@
     <prov:entity prov:id="ex:l1_books">
         <prov:label>Tabla l1_books</prov:label>
         <prov:description>Tabla consolidada con metadatos de libros y reseñas, creada a partir de Books Dataset y Amazon Books Reviews.</prov:description>
-        <prov:creationDate>2025-10-22T00:00:00</prov:creationDate>
+        <prov:creationDate>fecha</prov:creationDate>
+        <prov:source>
+            <prov:url>ruta_o_url_de_la_tabla_l1_books</prov:url>
+            <prov:downloadDate>fecha_de_descarga</prov:downloadDate>
+        </prov:source>
         <prov:columns>
             <prov:column>
                 <prov:name>title</prov:name>
@@ -49,7 +53,7 @@
             </prov:column>
             <prov:column>
                 <prov:name>categories</prov:name>
-                <prov:type>list<text>;</prov:type>
+                <prov:type>list<text></prov:type>
                 <prov:reason>Categorías o géneros del libro.</prov:reason>
             </prov:column>
             <prov:column>
@@ -60,12 +64,10 @@
         </prov:columns>
     </prov:entity>
 
-    <!-- Actividad: Creación de ln_books -->
-    <prov:activity prov:id="ex:generate_ln_books"
-                   prov:startTime="2025-10-22T00:00:00"
-                   prov:endTime="2025-10-22T00:15:00">
-        <prov:label>Integración de Books Dataset y Amazon Books Reviews</prov:label>
-        <prov:description>Proceso de consolidación y limpieza de datos para generar la tabla ln_books con todos los metadatos y campos necesarios.</prov:description>
+    <prov:activity prov:id="ex:generate_l1_books"
+                   prov:startTime="2025-10-22T00:00:00">
+        <prov:label>Generar la tabla de l1_books</prov:label>
+        <prov:description>Importar los datos del dataset de Amazon Books Reviews desde el CSV, cargandolos en una BD de postgresql</prov:description>
     </prov:activity>
 
     <!-- Agentes involucrados -->
@@ -75,25 +77,17 @@
         <prov:role>Responsable de la integración y limpieza de los datasets para generar l1_books.</prov:role>
     </prov:agent>
 
-    <prov:agent prov:id="ex:script_etl">
-        <prov:label>Script de ETL</prov:label>
+    <prov:agent prov:id="ex:postgresql_db">
+        <prov:label>Postgresql Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
-        <prov:role>Script o herramienta automatizada que realizó la integración de los datasets.</prov:role>
+        <prov:role>Herramienta para cargar los datos</prov:role>
     </prov:agent>
 
     <!-- Relaciones -->
     <prov:wasGeneratedBy prov:entity="ex:l1_books"
                          prov:activity="ex:generate_l1_books"/>
-    <prov:wasDerivedFrom prov:generatedEntity="ex:l1_books"
-                         prov:usedEntity="ex:books_dataset"/>
-    <prov:wasDerivedFrom prov:generatedEntity="ex:l1_books"
-                         prov:usedEntity="ex:amazon_reviews"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l1_books"
                             prov:agent="ex:user_me"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l1_books"
-                            prov:agent="ex:script_etl"/>
-    <prov:used prov:activity="ex:generate_l1_books"
-               prov:entity="ex:books_dataset"/>
-    <prov:used prov:activity="ex:generate_l1_books"
-               prov:entity="ex:amazon_reviews"/>
+                            prov:agent="ex:postgresql_db"/>
 </prov:document>
