@@ -1,0 +1,105 @@
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <!-- Entidad: Tabla l1_ratings -->
+    <prov:entity prov:id="ex:l1_ratings">
+        <prov:label>Tabla l1_ratings</prov:label>
+        <prov:description>Tabla consolidada con información de reseñas/valoraciones (ratings) preparada para análisis; incluye metadatos por columna.</prov:description>
+        <prov:creationDate>fecha</prov:creationDate>
+        <prov:source>
+            <prov:url>https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews</prov:url>
+            <prov:downloadDate>2025-09-02T18:39:21</prov:downloadDate>
+        </prov:source>
+        <prov:columns>
+            <prov:column>
+                <prov:name>review_id</prov:name>
+                <prov:type>integer</prov:type>
+                <prov:reason>Identificador interno de la reseña.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>id</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Identificador del producto o ítem reseñado.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>title</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Título del libro reseñado.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>price</prov:name>
+                <prov:type>real</prov:type>
+                <prov:reason>Precio del libro en el momento de la reseña (cuando está disponible).</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>user_id</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Identificador del usuario que dejó la reseña.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>profileName</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Nombre de perfil del usuario que emite la reseña.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>review/helpfulness</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Medida de utilidad de la reseña, expresada como fracción (ejemplo: 3/5 indica que 3 de 5 usuarios consideraron la reseña útil).</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>review/score</prov:name>
+                <prov:type>real</prov:type>
+                <prov:reason>Calificación numérica asignada al libro (en una escala de 1 a 5).</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>review/time</prov:name>
+                <prov:type>bigint</prov:type>
+                <prov:reason>Marca temporal de la reseña, expresado con un timestamp (epoch).</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>review/summary</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Breve resumen o título que acompaña la reseña del usuario.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>review/text</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Texto completo de la reseña proporcionado por el usuario.</prov:reason>
+            </prov:column>
+        </prov:columns>
+    </prov:entity>
+
+    <!-- Actividad: Creación de l1_ratings -->
+    <prov:activity prov:id="ex:generate_l1_ratings"
+                   prov:startTime="2025-10-23T00:00:00"
+                   prov:endTime="2025-10-23T00:10:00">
+        <prov:label>Generación de l1_ratings</prov:label>
+        <prov:description>Proceso de extracción, limpieza y consolidación de datos de reseñas para producir la tabla l1_ratings.</prov:description>
+    </prov:activity>
+
+    <!-- Agentes involucrados -->
+    <prov:agent prov:id="ex:user_me">
+        <prov:label>Usuario Responsable</prov:label>
+        <prov:type>prov:Person</prov:type>
+        <prov:role>Responsable de la extracción y limpieza de datos para generar l1_ratings.</prov:role>
+    </prov:agent>
+
+    <prov:agent prov:id="ex:postgresql_db">
+        <prov:label>Postgresql Import</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Herramienta para cargar los datos</prov:role>
+    </prov:agent>
+
+    <!-- Relaciones -->
+    <prov:wasGeneratedBy prov:entity="ex:l1_ratings"
+                         prov:activity="ex:generate_l1_ratings"/>
+    <prov:wasDerivedFrom prov:generatedEntity="ex:l1_ratings"
+                         prov:usedEntity="ex:raw_ratings_source"/>
+    <prov:wasAssociatedWith prov:activity="ex:generate_l1_ratings"
+                            prov:agent="ex:user_me"/>
+    <prov:wasAssociatedWith prov:activity="ex:generate_l1_ratings"
+                            prov:agent="ex:script_etl"/>
+    <prov:used prov:activity="ex:generate_l1_ratings"
+               prov:entity="ex:raw_ratings_source"/>
+
+</prov:document>

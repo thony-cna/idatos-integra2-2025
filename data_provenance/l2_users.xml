@@ -1,0 +1,65 @@
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <!-- Entidad: Tabla l2_users -->
+    <prov:entity prov:id="ex:l2_users">
+        <prov:label>Tabla l2_users</prov:label>
+        <prov:description>Tabla derivada con información de usuarios recolectada desde el dataset de reseñas; contiene ubicación y edad cuando están disponibles.</prov:description>
+        <prov:creationDate>fecha</prov:creationDate>
+        <prov:source>
+            <prov:url>https://www.kaggle.com/datasets/saurabhbagchi/books-dataset</prov:url>
+            <prov:downloadDate>2025-09-02T18:39:21</prov:downloadDate>
+        </prov:source>
+        <prov:columns>
+            <prov:column>
+                <prov:name>User-ID</prov:name>
+                <prov:type>integer</prov:type>
+                <prov:reason>Identificador único del usuario.</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>location</prov:name>
+                <prov:type>text</prov:type>
+                <prov:reason>Ubicación declarada por el usuario (normalmente ciudad, estado, país).</prov:reason>
+            </prov:column>
+            <prov:column>
+                <prov:name>age</prov:name>
+                <prov:type>integer</prov:type>
+                <prov:reason>Edad declarada del usuario (puede contener valores nulos o inconsistentes).</prov:reason>
+            </prov:column>
+        </prov:columns>
+    </prov:entity>
+
+    <!-- Actividad: Creación de l2_users -->
+    <prov:activity prov:id="ex:generate_l2_users"
+                   prov:startTime="2025-10-22T00:00:00"
+                   prov:endTime="2025-10-22T00:10:00">
+        <prov:label>Generar la tabla de l2_users</prov:label>
+        <prov:description>Extracción y normalización de datos de usuarios desde las reseñas para generar la tabla l2_users.</prov:description>
+    </prov:activity>
+
+    <!-- Agentes involucrados -->
+    <prov:agent prov:id="ex:user_me">
+        <prov:label>Usuario Responsable</prov:label>
+        <prov:type>prov:Person</prov:type>
+        <prov:role>Responsable de la extracción y normalización de datos para l2_users.</prov:role>
+    </prov:agent>
+
+    <prov:agent prov:id="ex:postgresql_db">
+        <prov:label>Postgresql Import</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Herramienta para cargar los datos</prov:role>
+    </prov:agent>
+
+    <!-- Relaciones -->
+    <prov:wasGeneratedBy prov:entity="ex:l2_users"
+                         prov:activity="ex:generate_l2_users"/>
+    <prov:wasDerivedFrom prov:generatedEntity="ex:l2_users"
+                         prov:usedEntity="ex:raw_users_source"/>
+    <prov:wasAssociatedWith prov:activity="ex:generate_l2_users"
+                            prov:agent="ex:user_me"/>
+    <prov:wasAssociatedWith prov:activity="ex:generate_l2_users"
+                            prov:agent="ex:postgresql_db"/>
+    <prov:used prov:activity="ex:generate_l2_users"
+               prov:entity="ex:raw_users_source"/>
+
+</prov:document>

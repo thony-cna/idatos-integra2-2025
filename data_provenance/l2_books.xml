@@ -68,10 +68,10 @@
         <prov:role>Responsable de la extracción y transformación de datos para l2_books.</prov:role>
     </prov:agent>
 
-    <prov:agent prov:id="ex:script_etl">
-        <prov:label>Script de ETL</prov:label>
+    <prov:agent prov:id="ex:postgresql_db">
+        <prov:label>Postgresql Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
-        <prov:role>Script automatizado que realizó la selección y limpieza de columnas de Books Dataset.</prov:role>
+        <prov:role>Herramienta para cargar los datos</prov:role>
     </prov:agent>
 
     <!-- Relaciones -->
