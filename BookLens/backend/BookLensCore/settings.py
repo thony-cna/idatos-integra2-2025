@@ -57,6 +57,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173"
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50
+}
+
 ROOT_URLCONF = 'BookLensCore.urls'
 
 TEMPLATES = [
@@ -84,8 +89,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "OPTIONS": {
-            "service": "my_service",
-            "passfile": ".my_pgpass",
+            "service": "my_service"
         },
     }
 }
