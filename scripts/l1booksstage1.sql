@@ -4,6 +4,7 @@ SELECT
     title,
     description,
     authors,
+	image,
     previewlink,
     publisher,
     publisheddate,

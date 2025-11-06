@@ -10,6 +10,7 @@ SELECT DISTINCT ON (
     title,
     description,
     authors,
+	image,
     previewlink,
     publisher,
     publisheddate,
@@ -28,6 +29,7 @@ WHERE title IS NOT NULL
   AND (
     description IS NULL AND
     authors IS NULL AND
+	image IS NULL AND
     previewlink IS NULL AND
     publisher IS NULL AND
     publisheddate IS NULL AND
