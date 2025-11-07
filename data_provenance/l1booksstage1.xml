@@ -38,7 +38,7 @@
 
             <prov:column>
                 <prov:name>authors</prov:name>
-                <prov:type>xsd:string</prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>
                     Se conserva como lista de autores, aplicando normalización: eliminando tildes, sustitución de "ñ" por "n",
                     signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
@@ -55,7 +55,7 @@
             </prov:column>
 
             <prov:column>
-                <prov:name>previewLink</prov:name>
+                <prov:name>previewlink</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
                     Se conserva sin alteraciones. Permite mantener la referencia a la vista previa del libro
@@ -84,7 +84,7 @@
             </prov:column>
 
             <prov:column>
-                <prov:name>infoLink</prov:name>
+                <prov:name>infolink</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
                     Enlace informativo original del libro. Se mantiene sin alteraciones.
@@ -93,7 +93,7 @@
 
             <prov:column>
                 <prov:name>categories</prov:name>
-                <prov:type>xsd:string</prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>
                     Lista de categorías o géneros. Se mantiene sin limpieza en esta etapa, pues puede usarse
                     para análisis o enriquecimiento posterior.
@@ -128,8 +128,7 @@
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Motor de base de datos que ejecuta las consultas SQL de limpieza y transformación.</prov:role>
     </prov:agent>
-        </prov:agent>
-        <prov:agent prov:id="ex:unaccent_extension">
+    <prov:agent prov:id="ex:unaccent_extension">
         <prov:label>PostgreSQL unaccent extension</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Extensión utilizada para eliminar tildes y diacríticos de los textos durante la normalización.</prov:role>

@@ -61,6 +61,9 @@
             (1) Inserción directa de registros de l2_ratings con campos User-ID, ISBN y Book-Rating.
             (2) Inserción de registros de l1ratingsstage1 tras un cruce con l1usersstage1
                 para mapear user_id → User-ID y asegurar consistencia global en la clave de usuario.
+            Todos los registros insertados fueron depurados y normalizados previamente: se verificó el formato ISBN
+            (normalización de guiones/espacios y validación básica), se convirtieron los ISBN a mayúsculas
+            y se estandarizaron los campos de usuario y rating para garantizar coherencia entre fuentes.
             (3) Eliminación de reseñas sin correspondencia con ningún libro en lnbooks,
                 asegurando integridad referencial dentro del modelo LN.
         </prov:description>
