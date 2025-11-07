@@ -11,7 +11,7 @@ export default function BookCard({ book }: BookCardProps) {
     
     return (
         <Card className="w-80 shadow hover:shadow-lg transition"
-            onClick={() => navigate(`/books/${book.isbn}`)}
+            onClick={() => navigate(`/books/${book.identifier}`)}
         >
         <img
             src={book.imageurl}
@@ -20,8 +20,8 @@ export default function BookCard({ book }: BookCardProps) {
         />
         <CardContent className="p-3">
             <h3 className="text-sm font-semibold line-clamp-2">{book.title}</h3>
-            <p className="text-xs text-gray-600">{book.author}</p>
-            <p className="text-xs text-gray-400">{book.year}</p>
+            <p className="text-xs text-gray-600">{book.creator}</p>
+            <p className="text-xs text-gray-400">{book.date}</p>
         </CardContent>
         </Card>
     );

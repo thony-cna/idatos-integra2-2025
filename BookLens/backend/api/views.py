@@ -9,9 +9,9 @@ class BookListView(ListAPIView):
 class BookDetailView(RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    lookup_field = 'isbn'
+    lookup_field = 'identifier'
 
 class BookDetailWithReviewsView(RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookWithReviewsSerializer
-    lookup_field = 'isbn'
+    lookup_field = 'identifier'

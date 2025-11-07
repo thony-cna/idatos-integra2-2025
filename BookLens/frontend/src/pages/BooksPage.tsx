@@ -25,7 +25,7 @@ export default function BooksPage() {
   const filteredBooks = books.filter((b: Book) => {
     const matchesSearch = b.title?.toLowerCase().includes(search.toLowerCase());
     const matchesGenre = genre ? b.genres?.includes(genre) : true;
-    const matchesYear = b.year >= year;
+    const matchesYear = b.date >= year;
     return matchesSearch && matchesGenre && matchesYear;
   });
 
@@ -39,7 +39,7 @@ export default function BooksPage() {
 
       <div className="p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {filteredBooks.map((book: Book) => (
-          <BookCard key={book.isbn} book={book} />
+          <BookCard key={book.identifier} book={book} />
         ))}
       </div>
 

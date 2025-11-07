@@ -1,19 +1,19 @@
 // src/types.ts
 export interface Book {
-  isbn: string;
+  identifier: string;
   title: string;
-  author: string;
+  creator: string;
   description: string | null;
   imageurl: string;
   preview: string | null;
   publisher: string;
-  year: number;
-  infourl: string | null;
+  date: number;
+  source: string | null;
   genres: string[] | null;
   reviews: Review[];
 }
 
 export interface Review {
-  userid: number;
+  user_id: number;
   rating: number;
 }

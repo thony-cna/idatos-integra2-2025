@@ -2,31 +2,31 @@ from django.db import models
 
 # Create your models here.
 class Book(models.Model):
-    isbn = models.TextField(primary_key=True)
+    identifier = models.TextField(primary_key=True)
     title = models.TextField(null=True, blank=True)
-    author = models.TextField(null=True, blank=True)
+    creator = models.TextField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     imageurl = models.TextField(null=True, blank=True)
     preview = models.TextField(null=True, blank=True)
     publisher = models.TextField(null=True, blank=True)
-    year = models.IntegerField(null=True, blank=True)
-    infourl = models.TextField(null=True, blank=True)
+    date = models.IntegerField(null=True, blank=True)
+    source = models.TextField(null=True, blank=True)
     genres = models.TextField(null=True, blank=True)
 
     class Meta:
         managed = False          
-        db_table = 'ln_books'
+        db_table = 'lnbooks'
 
     def __str__(self):
-        return f"{self.title or 'Sin título'} ({self.isbn})"
+        return f"{self.title or 'Sin título'} ({self.identifier})"
 
 
 class User(models.Model):
-    userid = models.IntegerField(primary_key=True)
+    userid = models.IntegerField(primary_key=True, db_column='User-ID')
 
     class Meta:
         managed = False
-        db_table = 'ln_users'
+        db_table = 'lnusers'
     
     def __str__(self):
         return f"User {self.userid}"
@@ -34,11 +34,15 @@ class User(models.Model):
 
 class Review(models.Model):
     id = models.AutoField(primary_key=True)
-    userid = models.ForeignKey(User, on_delete=models.CASCADE, db_column='userid')
-    isbn = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='reviews', db_column='isbn')
+
+    user_id = models.IntegerField()
+    isbn = models.CharField(max_length=20)
     rating = models.IntegerField(null=True, blank=True)
 
     class Meta:
         managed = False
-        db_table = 'ln_reviews'
+        db_table = 'lnreviews'
+
+
+
 
