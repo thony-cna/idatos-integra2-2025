@@ -28,7 +28,7 @@ Aplicación web completa con:
 
 ### `/calidad`
 
-Contiene queries SQL para el análisis y control de calidad de los datos integrados.
+Contiene queries SQL para el análisis de la calidad de los datos integrados.
 
 ### `/csv`
 
