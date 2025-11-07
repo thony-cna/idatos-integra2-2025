@@ -13,7 +13,7 @@ INSERT INTO lnreviews (
 )
 SELECT
 	"User-ID",
-	isbn,
+	UPPER(isbn),
 	"Book-Rating"
 FROM l2_ratings;
 
