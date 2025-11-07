@@ -2,7 +2,7 @@
 
 -- Índice sobre la tabla original para acelerar el DISTINCT ON
 CREATE INDEX IF NOT EXISTS idx_ratings_id_user_time
-ON l1_ratings (id, user_id, "review/time" DESC);
+ON l1ratings (id, user_id, "review/time" DESC);
 
 -- Crear tabla final solo con columnas necesarias
 CREATE TABLE l1ratingsstage1 AS
@@ -13,7 +13,7 @@ SELECT
     "review/score"
 FROM (
     SELECT DISTINCT ON (id, user_id) *
-    FROM l1_ratings
+    FROM l1ratings
     WHERE user_id IS NOT NULL
     ORDER BY id, user_id, "review/time" DESC
 ) AS sub;

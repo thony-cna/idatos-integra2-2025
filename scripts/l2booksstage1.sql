@@ -7,7 +7,7 @@ SELECT
     "Year-Of-Publication",
     publisher,
     "Image-URL-L"
-FROM l2_books;
+FROM l2books;
 
 
 CREATE EXTENSION IF NOT EXISTS unaccent;
