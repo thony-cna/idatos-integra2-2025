@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <!-- Entidad: Tabla l1booksstage2 -->
+    <prov:entity prov:id="ex:l1booksstage2">
+        <prov:label>Tabla l1booksstage2</prov:label>
+        <prov:description>
+            Tabla intermedia derivada de l1booksstage1 tras aplicar un proceso de
+            deduplicación y filtrado de registros sin información relevante.
+            Representa una versión depurada y consolidada del dataset Amazon Books,
+            garantizando unicidad por título, autores y editorial.
+        </prov:description>
+        
+        <prov:wasDerivedFrom prov:entity="ex:l1booksstage1"/>
+
+        <!-- Columnas conservadas -->
+        <prov:columns>
+
+            <prov:column>
+                <prov:name>title</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Se conserva como identificador principal del libro.
+                    Utilizado como parte de la clave natural de deduplicación
+                    (LOWER(title)). Se mantiene para el matching posterior con l2books.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>description</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Conservado solo si existe contenido no nulo.
+                    Permite enriquecer la información bibliográfica y justificar
+                    la permanencia del registro en esta tabla.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>authors</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Incluido como parte de la clave de deduplicación (LOWER(authors::text)).
+                    Se mantiene porque aporta contexto semántico y relevancia en la integración.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>image</prov:name>
+                <prov:type>xsd:anyURI</prov:type>
+                <prov:reason>
+                    Se conserva si tiene valor. Permite mantener la representación visual
+                    del libro en las etapas de integración o visualización.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>previewLink</prov:name>
+                <prov:type>xsd:anyURI</prov:type>
+                <prov:reason>
+                    Conservado si no es nulo. Es una referencia externa al recurso original
+                    en Google Books o Amazon, útil para validación cruzada.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>publisher</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Parte de la clave de deduplicación (LOWER(publisher)).
+                    Se mantiene para identificar ediciones y consolidar editoriales equivalentes.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>publisheddate</prov:name>
+                <prov:type>xsd:gYear</prov:type>
+                <prov:reason>
+                    Se conserva el año más reciente al aplicar ORDER BY DESC
+                    durante la deduplicación, garantizando la vigencia del registro.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>infoLink</prov:name>
+                <prov:type>xsd:anyURI</prov:type>
+                <prov:reason>
+                    Conservado si tiene valor no nulo; referencia informativa complementaria
+                    al registro bibliográfico.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>categories</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Conservado si contiene géneros o categorías válidas.
+                    Puede emplearse para análisis de similitud o clasificación temática.
+                </prov:reason>
+            </prov:column>
+
+             <prov:column>
+                <prov:name>isbn</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Campo agregado durante la vinculación con l1ratingsstage1.
+                    Permite asociar de forma única libros y reseñas mediante coincidencia exacta de título.
+                </prov:reason>
+            </prov:column>
+
+        </prov:columns>
+    </prov:entity>
+
+    <!-- Actividad -->
+    <prov:activity prov:id="ex:deduplicate_l1booksstage2"
+                   prov:startTime="2025-10-26T00:00:00"
+                   prov:endTime="2025-10-26T01:00:00">
+        <prov:label>Eliminación de duplicados y registros vacíos en l1booksstage1</prov:label>
+        <prov:description>
+            Proceso SQL ejecutado en PostgreSQL para crear la tabla l1booksstage2 a partir de l1booksstage1.
+            Se aplicó SELECT DISTINCT ON combinando los campos normalizados title, authors y publisher,
+            seleccionando la versión más reciente (publisheddate DESC). Luego se eliminaron registros
+            que carecían completamente de información descriptiva, asegurando un conjunto limpio y único.
+        </prov:description>
+        <prov:used prov:entity="ex:l1booksstage1"/>
+    </prov:activity>
+    <prov:activity prov:id="ex:enrich_l1booksstage2_with_isbn"
+                   prov:startTime="2025-10-27T00:00:00"
+                   prov:endTime="2025-10-27T01:30:00">
+        <prov:label>Enriquecimiento de l1booksstage2 con identificadores ISBN</prov:label>
+        <prov:description>
+            Proceso SQL ejecutado en PostgreSQL que agrega la columna isbn a l1booksstage2.
+            Se realiza un cruce con l1ratingsstage1, asignando el ISBN solo a títulos
+            presentes una única vez en ambas tablas, para evitar ambigüedades.
+        </prov:description>
+        <prov:used prov:entity="ex:l1ratingsstage1"/>
+        <prov:used prov:entity="ex:l1booksstage2"/>
+    </prov:activity>
+
+    <!-- Agentes involucrados -->
+    <prov:agent prov:id="ex:user_me">
+        <prov:label>Usuario Responsable</prov:label>
+        <prov:type>prov:Person</prov:type>
+        <prov:role>Ejecutó y supervisó la deduplicación y limpieza.</prov:role>
+    </prov:agent>
+    <prov:agent prov:id="ex:postgresql_db">
+        <prov:label>PostgreSQL Engine</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Ejecutó las consultas SQL de eliminación de duplicados y registros nulos.</prov:role>
+    </prov:agent>
+
+    <!-- Relaciones -->
+    <prov:wasGeneratedBy prov:entity="ex:l1booksstage2"
+                         prov:activity="ex:deduplicate_l1booksstage2"/>
+
+    <prov:wasAssociatedWith prov:activity="ex:deduplicate_l1booksstage2"
+                            prov:agent="ex:user_me"/>
+    <prov:wasAssociatedWith prov:activity="ex:deduplicate_l1booksstage2"
+                            prov:agent="ex:postgresql_db"/>
+
+</prov:document>
