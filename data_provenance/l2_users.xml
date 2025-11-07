@@ -39,12 +39,11 @@
     </prov:activity>
 
     <!-- Agentes involucrados -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Responsable de la extracción y normalización de datos para l2_users.</prov:role>
     </prov:agent>
-
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>Postgresql Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
@@ -57,7 +56,7 @@
     <prov:wasDerivedFrom prov:generatedEntity="ex:l2_users"
                          prov:usedEntity="ex:raw_users_source"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_users"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_users"
                             prov:agent="ex:postgresql_db"/>
     <prov:used prov:activity="ex:generate_l2_users"

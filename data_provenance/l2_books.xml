@@ -63,12 +63,11 @@
     </prov:activity>
 
     <!-- Agentes involucrados -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Responsable de la extracción y transformación de datos para l2_books.</prov:role>
     </prov:agent>
-
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>Postgresql Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
@@ -79,7 +78,7 @@
     <prov:wasGeneratedBy prov:entity="ex:l2_books"
                          prov:activity="ex:generate_l2_books"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_books"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_books"
                             prov:agent="ex:postgresql_db"/>
 </prov:document>

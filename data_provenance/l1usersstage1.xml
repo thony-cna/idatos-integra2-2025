@@ -54,9 +54,9 @@
     </prov:activity>
 
     <!-- Agentes -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Ejecutó la generación de identificadores únicos y verificó la consistencia entre datasets.</prov:role>
     </prov:agent>
     <prov:agent prov:id="ex:postgresql_db">
@@ -70,7 +70,7 @@
                          prov:activity="ex:generate_l1usersstage1"/>
 
     <prov:wasAssociatedWith prov:activity="ex:generate_l1usersstage1"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l1usersstage1"
                             prov:agent="ex:postgresql_db"/>
 

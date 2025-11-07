@@ -118,10 +118,10 @@
     </prov:activity>
 
     <!-- Agentes involucrados -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
-        <prov:role>Encargada del diseño y ejecución del proceso de normalización.</prov:role>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
+        <prov:role>Encargado del diseño y ejecución del proceso de normalización.</prov:role>
     </prov:agent>
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>PostgreSQL Engine</prov:label>
@@ -140,7 +140,7 @@
                          prov:activity="ex:normalize_l1booksstage1"/>
 
     <prov:wasAssociatedWith prov:activity="ex:normalize_l1booksstage1"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:normalize_l1booksstage1"
                             prov:agent="ex:postgresql_db"/>
     <prov:wasAssociatedWith prov:activity="ex:normalize_l1booksstage1"

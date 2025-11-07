@@ -139,9 +139,9 @@
     </prov:activity>
 
     <!-- Agentes involucrados -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Ejecutó y supervisó la deduplicación y limpieza.</prov:role>
     </prov:agent>
     <prov:agent prov:id="ex:postgresql_db">
@@ -155,7 +155,7 @@
                          prov:activity="ex:deduplicate_l1booksstage2"/>
 
     <prov:wasAssociatedWith prov:activity="ex:deduplicate_l1booksstage2"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:deduplicate_l1booksstage2"
                             prov:agent="ex:postgresql_db"/>
 

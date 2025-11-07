@@ -79,12 +79,11 @@
     </prov:activity>
 
     <!-- Agentes involucrados -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Responsable de la extracción y limpieza de datos para generar l1_ratings.</prov:role>
     </prov:agent>
-
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>Postgresql Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
@@ -97,7 +96,7 @@
     <prov:wasDerivedFrom prov:generatedEntity="ex:l1_ratings"
                          prov:usedEntity="ex:raw_ratings_source"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l1_ratings"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l1_ratings"
                             prov:agent="ex:script_etl"/>
     <prov:used prov:activity="ex:generate_l1_ratings"
