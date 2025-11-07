@@ -59,7 +59,7 @@ Colección de scripts SQL utilizados en el proceso de integración y transformac
 - **Backend**: Django + Django REST Framework
 - **Frontend**: React + TypeScript + Vite
 - **Estilos**: TailwindCSS + ShadcnUI
-- **Base de Datos**: SQLite
+- **Base de Datos**: PostgreSQL
 - **Formatos de Datos**: CSV, XML, RDF
 
 ## Instalación y Uso
