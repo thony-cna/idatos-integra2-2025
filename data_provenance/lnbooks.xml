@@ -56,7 +56,7 @@
                 <prov:name>imageurl</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
-                    URL de imagen media del libro (Image-URL-M). 
+                    URL de imagen del libro (Image-URL-L). 
                     Se conserva desde l2booksstage1.
                 </prov:reason>
             </prov:column>
@@ -95,8 +95,8 @@
                 <prov:name>genres</prov:name>
                 <prov:type>xsd:string</prov:type>
                 <prov:reason>
-                    Categorías o géneros del libro. Provenientes de l1booksstage2 
-                    cuando el título y autor coinciden por similitud textual.
+                    Categorías o géneros del libro. 
+                    Provenientes de l1booksstage2.
                 </prov:reason>
             </prov:column>
         </prov:columns>

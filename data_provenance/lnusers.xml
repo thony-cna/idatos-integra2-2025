@@ -9,7 +9,7 @@
             Tabla unificada de usuarios resultante de la combinación de los espacios
             de identificadores de l2_users (Books Dataset) y l1usersstage1 (Amazon Reviews).
             Representa el conjunto completo de usuarios normalizados dentro del modelo
-            integrado. Cada registro mantiene el campo "User-ID" único y consistente entre ambos orígenes.
+            integrado. Cada registro mantiene el campo "user_id" único y consistente entre ambos orígenes.
         </prov:description>
 
         <prov:wasDerivedFrom prov:entity="ex:l2_users"/>
@@ -18,7 +18,7 @@
         <!-- Columnas -->
         <prov:columns>
             <prov:column>
-                <prov:name>User-ID</prov:name>
+                <prov:name>user_id</prov:name>
                 <prov:type>xsd:integer</prov:type>
                 <prov:reason>
                     Identificador unificado del usuario.
