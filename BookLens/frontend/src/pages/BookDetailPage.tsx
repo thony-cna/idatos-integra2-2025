@@ -1,6 +1,6 @@
 // src/pages/BookDetailPage.tsx
-import React from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import { type Book } from "@/types";
 import {
@@ -12,10 +12,34 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
+import { BooksFilterContext } from "@/context/BooksFilterContext";
 
 export default function BookDetailPage() {
+  const navigate = useNavigate(); 
   const { isbn } = useParams<{ isbn: string }>();
-  const [book, setBook] = React.useState<Book | null>(null);
+  const [book, setBook] = useState<Book | null>(null);
+
+  const { filters, setFilters } = useContext(BooksFilterContext);
+
+  // inputs locales para la navbar
+  const [search, setSearch] = useState(filters.title);
+  const [genre, setGenre] = useState(filters.genre);
+  const [year, setYear] = useState(filters.year);
+
+  const handleSearchClick = () => {
+    setFilters({ title: search, genre, year });
+    navigate("/");
+  };
+
+  const handleClearFilters = () => {
+    const defaultFilters = { title: "", genre: "", year: 0 };
+    setFilters(defaultFilters);
+    setSearch(defaultFilters.title);
+    setGenre(defaultFilters.genre);
+    setYear(defaultFilters.year);
+    navigate("/");
+  };
+  
 
   const formatGenres = (genres: string[] | string | null) => {
     if (Array.isArray(genres)) return genres.join(", ");
@@ -29,13 +53,7 @@ export default function BookDetailPage() {
     return "Sin géneros";
   };
 
-
-  // Estados de filtros de Navbar
-  const [search, setSearch] = React.useState("");
-  const [genre, setGenre] = React.useState("");
-  const [year, setYear] = React.useState(2000);
-
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchBook = async () => {
       const res = await fetch(`http://127.0.0.1:8000/api/books/${isbn}`);
       const data = await res.json();
@@ -48,9 +66,12 @@ export default function BookDetailPage() {
     return (
       <div className="min-h-screen flex flex-col">
         <Navbar
+          filters={{ title: search, genre, year }}
           onSearchChange={setSearch}
           onGenreChange={setGenre}
           onYearChange={setYear}
+          onSearchClick={handleSearchClick}
+          onClearFilters={handleClearFilters}
         />
         <div className="flex-grow flex items-center justify-center">
           <p className="text-lg text-muted-foreground">Cargando libro...</p>
@@ -63,9 +84,12 @@ export default function BookDetailPage() {
     <div className="min-h-screen bg-background">
       {/* Navbar visible siempre */}
       <Navbar
+        filters={{ title: search, genre, year }}
         onSearchChange={setSearch}
         onGenreChange={setGenre}
         onYearChange={setYear}
+        onSearchClick={handleSearchClick}
+        onClearFilters={handleClearFilters}
       />
 
       <div className="max-w-5xl mx-auto p-6">
