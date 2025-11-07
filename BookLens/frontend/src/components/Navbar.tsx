@@ -76,7 +76,7 @@ export default function Navbar({ filters, onSearchChange, onGenreChange, onYearC
           value={[year]}
           min={0}
           max={2050}
-          step={1}
+          step={5}
           onValueChange={handleYearChange}
           className="flex-1"
         />
