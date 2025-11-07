@@ -22,7 +22,7 @@ class Book(models.Model):
 
 
 class User(models.Model):
-    userid = models.IntegerField(primary_key=True, db_column='User-ID')
+    userid = models.IntegerField(primary_key=True, db_column='user_id')
 
     class Meta:
         managed = False

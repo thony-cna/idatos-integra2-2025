@@ -19,7 +19,7 @@ INSERT INTO lnbooks (
     creator,      -- Book-Author
     publisher,    -- Publisher
     date,         -- Year-Of-Publication
-    imageurl,     -- Image-URL-M
+    imageurl,     -- Image-URL-L
     preview,      -- no disponible en l2, queda NULL
     description,  -- no disponible en l2, queda NULL
     source,       -- no disponible en l2, queda NULL
@@ -31,7 +31,7 @@ SELECT
     "Book-Author" AS creator,
     Publisher AS publisher,
     "Year-Of-Publication" AS date,
-    "Image-URL-M" AS imageurl,
+    "Image-URL-L" AS imageurl,
     NULL AS preview,
     NULL AS description,
     NULL AS source,

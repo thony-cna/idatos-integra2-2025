@@ -1,4 +1,4 @@
---- LIBRERÍA INTERMEDIA L1BOOKSSTAGE1
+--- LIBRERÍA INTERMEDIA L2BOOKSSTAGE1
 CREATE TABLE l2booksstage1 AS
 SELECT
     isbn,
@@ -6,7 +6,7 @@ SELECT
     "Book-Author",
     "Year-Of-Publication",
     publisher,
-    "Image-URL-M"
+    "Image-URL-L"
 FROM l2_books;
 
 
