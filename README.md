@@ -65,6 +65,6 @@ Colección de scripts SQL utilizados en el proceso de integración y transformac
 ## Autores
 
 - Anthony Cuña
-- Matías Fregueiro
+- Jonathan Fregueiro
 - Sofia Torres
 - Pablo Alvarez
