@@ -14,52 +14,52 @@
         <prov:columns>
             <prov:column>
                 <prov:name>title</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Título del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>description</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Descripción o sinopsis del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>authors</prov:name>
-                <prov:type>list<text></prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>Lista de autores del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>image</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>URL de la imagen del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>previewLink</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>Enlace de vista previa del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>publisher</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Editorial que publicó el libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>publishedDate</prov:name>
-                <prov:type>date</prov:type>
+                <prov:type>xsd:gYear</prov:type>
                 <prov:reason>Fecha o año de publicación del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>infoLink</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>Enlace con información adicional del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>categories</prov:name>
-                <prov:type>list<text></prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>Categorías o géneros del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>ratingsCount</prov:name>
-                <prov:type>real</prov:type>
+                <prov:type>xsd:decimal</prov:type>
                 <prov:reason>Promedio en alguna ponderación.</prov:reason>
             </prov:column>
         </prov:columns>

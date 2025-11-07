@@ -14,57 +14,57 @@
         <prov:columns>
             <prov:column>
                 <prov:name>review_id</prov:name>
-                <prov:type>integer</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>Identificador interno de la reseña.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>id</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Identificador del producto o ítem reseñado.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>title</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Título del libro reseñado.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>price</prov:name>
-                <prov:type>real</prov:type>
+                <prov:type>xsd:decimal</prov:type>
                 <prov:reason>Precio del libro en el momento de la reseña (cuando está disponible).</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>user_id</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Identificador del usuario que dejó la reseña.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>profileName</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Nombre de perfil del usuario que emite la reseña.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>review/helpfulness</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Medida de utilidad de la reseña, expresada como fracción (ejemplo: 3/5 indica que 3 de 5 usuarios consideraron la reseña útil).</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>review/score</prov:name>
-                <prov:type>real</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>Calificación numérica asignada al libro (en una escala de 1 a 5).</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>review/time</prov:name>
-                <prov:type>bigint</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>Marca temporal de la reseña, expresado con un timestamp (epoch).</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>review/summary</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Breve resumen o título que acompaña la reseña del usuario.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>review/text</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Texto completo de la reseña proporcionado por el usuario.</prov:reason>
             </prov:column>
         </prov:columns>

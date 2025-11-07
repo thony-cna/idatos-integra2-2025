@@ -46,7 +46,7 @@
 
             <prov:column>
                 <prov:name>review/score</prov:name>
-                <prov:type>xsd:decimal</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>
                     Calificación de la reseña. Se transformó la escala original (1–5) a una escala común (1–10)
                     mediante multiplicación por 2, asegurando compatibilidad con otras fuentes.

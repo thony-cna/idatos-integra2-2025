@@ -14,17 +14,17 @@
         <prov:columns>
             <prov:column>
                 <prov:name>User-ID</prov:name>
-                <prov:type>integer</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>Identificador único del usuario.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>location</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Ubicación declarada por el usuario (normalmente ciudad, estado, país).</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>age</prov:name>
-                <prov:type>integer</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>Edad declarada del usuario (puede contener valores nulos o inconsistentes).</prov:reason>
             </prov:column>
         </prov:columns>

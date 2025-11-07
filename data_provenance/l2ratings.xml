@@ -14,17 +14,17 @@
         <prov:columns>
             <prov:column>
                 <prov:name>User-ID</prov:name>
-                <prov:type>integer</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>Identificador único del usuario que realiza la calificación.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>isbn</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Identificador del libro calificado (ISBN); referencia a `books.csv`.</prov:reason>
             </prov:column>
             <prov:column>
-                <prov:name>book-rating</prov:name>
-                <prov:type>integer</prov:type>
+                <prov:name>Book-Rating</prov:name>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>Puntuación otorgada por el usuario al libro (escala de 0 a 10).</prov:reason>
             </prov:column>
         </prov:columns>

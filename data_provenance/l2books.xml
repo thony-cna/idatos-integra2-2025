@@ -14,42 +14,42 @@
         <prov:columns>
             <prov:column>
                 <prov:name>isbn</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Identificador único del libro (ISBN).</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>Book-Title</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Título del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>Book-Author</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Autor del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>Year-Of-Publication</prov:name>
-                <prov:type>integer</prov:type>
+                <prov:type>xsd:gYear</prov:type>
                 <prov:reason>Año de publicación del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>publisher</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:string</prov:type>
                 <prov:reason>Editorial del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>Image-URL-S</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>URL de imagen pequeña del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>Image-URL-M</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>URL de imagen mediana del libro.</prov:reason>
             </prov:column>
             <prov:column>
                 <prov:name>Image-URL-L</prov:name>
-                <prov:type>text</prov:type>
+                <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>URL de imagen grande del libro.</prov:reason>
             </prov:column>
         </prov:columns>
