@@ -94,24 +94,24 @@ export default function BookDetailPage() {
       />
 
       <div className="max-w-5xl mx-auto p-6">
-        <Card className="overflow-hidden shadow-md mb-6">
+        <Card className="overflow-hidden shadow-md mb-6 py-6">
           <div className="flex flex-col md:flex-row">
             <div className="md:w-1/3">
               {book.imageurl && !imgError ? (
                 <img
                   src={book.imageurl}
                   alt={book.title}
-                  className="w-full h-130 object-cover rounded-md block ml-2"
+                  className="w-full h-130 object-cover rounded-md block ml-4"
                   onError={() => setImgError(true)}
                 />
               ) : (
-                <div className="w-full h-130 flex items-center justify-center bg-gray-200 text-gray-500 text-sm rounded-md ml-2">
+                <div className="w-full h-130 flex items-center justify-center bg-gray-200 text-gray-500 text-sm rounded-md ml-4">
                   No hay imagen disponible
                 </div>
               )}
             </div>
 
-            <div className="flex-1">
+            <div className="flex-1 ml-4">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">
                   {book.title}
@@ -163,7 +163,7 @@ export default function BookDetailPage() {
           </div>
         </Card>
 
-        <Card className="shadow-sm">
+        <Card className="shadow-sm py-6">
           <CardContent>
             <strong>Reviews:</strong>
             {book.reviews && book.reviews.length > 0 ? (
