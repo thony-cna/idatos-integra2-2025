@@ -1,0 +1,103 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:schema="http://schema.org/" xmlns:ex="http://integracion.com/schema#" xmlns:exr="http://integracion.com/resource/">
+<!--=====================CLASES=====================-->
+       <rdfs:Class rdf:about="http://integracion.com/schema#Book">
+              <rdfs:label xml:lang="es">Libro</rdfs:label>
+              <rdfs:comment xml:lang="es">Entidad que representa un libro integrado en lnbooks.</rdfs:comment>
+       </rdfs:Class>
+       <rdfs:Class rdf:about="http://integracion.com/schema#User">
+              <rdfs:label xml:lang="es">Usuario</rdfs:label>
+              <rdfs:comment xml:lang="es">Entidad que representa un usuario integrado en lnusers.</rdfs:comment>
+       </rdfs:Class>
+       <rdfs:Class rdf:about="http://integracion.com/schema#Review">
+              <rdfs:label xml:lang="es">Reseña</rdfs:label>
+              <rdfs:comment xml:lang="es">Calificacion de un usuario sobre un libro en lnreviews.</rdfs:comment>
+       </rdfs:Class>
+<!--=====================PROPERTIES - BOOK=====================-->
+       <rdf:Property rdf:about="http://integracion.com/schema#identifier">
+              <rdfs:label xml:lang="es">ISBN</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#title">
+              <rdfs:label xml:lang="es">Titulo</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#creator">
+              <rdfs:label xml:lang="es">Autor</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#description">
+              <rdfs:label xml:lang="es">Descripcion</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#imageURL">
+              <rdfs:label xml:lang="es">Imagen URL</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#preview">
+              <rdfs:label xml:lang="es">Vista previa URL</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#publisher">
+              <rdfs:label xml:lang="es">Editorial</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#date">
+              <rdfs:label xml:lang="es">Año de publicacion</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#gYear"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#source">
+              <rdfs:label xml:lang="es">Informacion URL</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#genres">
+              <rdfs:label xml:lang="es">Generos</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Book"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+       </rdf:Property>
+<!--=====================PROPERTIES - USER=====================-->
+       <rdf:Property rdf:about="http://integracion.com/schema#userId">
+              <rdfs:label xml:lang="es">Identificador de usuario</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#User"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+       </rdf:Property>
+<!--=====================PROPERTIES - REVIEW=====================-->
+       <rdf:Property rdf:about="http://integracion.com/schema#bookISBN">
+              <rdfs:label xml:lang="es">reseña sobre el libro de ISBN</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Review"/>
+              <rdfs:range rdf:resource="http://integracion.com/schema#Book"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#userIdentifier">
+              <rdfs:label xml:lang="es">reseña hecha por el usuario de ID</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Review"/>
+              <rdfs:range rdf:resource="http://integracion.com/schema#User"/>
+       </rdf:Property>
+       <rdf:Property rdf:about="http://integracion.com/schema#rating">
+              <rdfs:label xml:lang="es">calificacion (0–10)</rdfs:label>
+              <rdfs:domain rdf:resource="http://integracion.com/schema#Review"/>
+              <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+       </rdf:Property>
+<!--=====================EJEMPLO DE INSTANCIAS=====================-->
+       <ex:Book rdf:about="http://integracion.com/resource/book/0553296981">
+              <ex:identifier>0553296981</ex:identifier>
+              <ex:title>Dune</ex:title>
+              <ex:creator>Frank Herbert</ex:creator>
+              <ex:date rdf:datatype="http://www.w3.org/2001/XMLSchema#gYear">1965</ex:date>
+       </ex:Book>
+       <ex:User rdf:about="http://integracion.com/resource/user/123">
+              <ex:userId>123</ex:userId>
+       </ex:User>
+       <ex:Review rdf:about="http://integracion.com/resource/review/0553296981-123">
+              <ex:bookISBN rdf:resource="http://integracion.com/resource/book/0553296981"/>
+              <ex:userIdentifier rdf:resource="http://integracion.com/resource/user/123"/>
+              <ex:rating rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.0</ex:rating>
+       </ex:Review>
+</rdf:RDF>
