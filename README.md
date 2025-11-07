@@ -67,3 +67,4 @@ Colección de scripts SQL utilizados en el proceso de integración y transformac
 - Anthony Cuña
 - Matías Fregueiro
 - Sofia Torres
+- Pablo Alvarez
