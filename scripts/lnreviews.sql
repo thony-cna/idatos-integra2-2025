@@ -15,7 +15,7 @@ SELECT
 	"User-ID",
 	UPPER(isbn),
 	"Book-Rating"
-FROM l2_ratings;
+FROM l2ratings;
 
 --- Insertar reviews de l1 en lnreviews
 INSERT INTO lnreviews (

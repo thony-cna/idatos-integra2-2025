@@ -1,5 +1,5 @@
 --- ### TABLA l1usersstage1 ###
-SELECT MAX("User-ID") FROM l2_users; -- DEVUELVE 278858
+SELECT MAX("User-ID") FROM l2users; -- DEVUELVE 278858
 
 CREATE TABLE l1usersstage1 AS
 SELECT 

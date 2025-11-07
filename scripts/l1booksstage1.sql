@@ -10,8 +10,7 @@ SELECT
     publisheddate,
     infolink,
     categories
-FROM l1_books;
-
+FROM l1books;
 
 CREATE EXTENSION IF NOT EXISTS unaccent;
 
