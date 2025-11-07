@@ -62,6 +62,8 @@ export default function BookDetailPage() {
     fetchBook();
   }, [isbn]);
 
+  const [imgError, setImgError] = useState(false);
+
   if (!book) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -95,16 +97,21 @@ export default function BookDetailPage() {
       <div className="max-w-5xl mx-auto p-6">
         <Card className="overflow-hidden shadow-md">
           <div className="flex flex-col md:flex-row">
-            {/* Imagen del libro */}
             <div className="md:w-1/3">
-              <img
-                src={book.imageurl}
-                alt={book.title}
-                className="w-full h-full object-cover rounded-t-md md:rounded-l-md md:rounded-t-none"
-              />
+              {book.imageurl && !imgError ? (
+                <img
+                  src={book.imageurl}
+                  alt={book.title}
+                  className="w-full h-full object-cover rounded-md block ml-2"
+                  onError={() => setImgError(true)}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 text-sm rounded-md ml-2">
+                  No hay imagen disponible
+                </div>
+              )}
             </div>
 
-            {/* Detalles del libro */}
             <div className="flex-1">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">
@@ -155,7 +162,6 @@ export default function BookDetailPage() {
 
                 <Separator />
 
-                {/* Reviews con Shadcn/UI */}
                 <div>
                   <strong>Reviews:</strong>
                   {book.reviews && book.reviews.length > 0 ? (
