@@ -68,10 +68,10 @@
             </prov:column>
 
             <prov:column>
-                <prov:name>Image-URL-M</prov:name>
+                <prov:name>Image-URL-L</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
-                    URL de la imagen de portada en tamaño mediano. Se conserva sin modificaciones,
+                    URL de la imagen de portada en tamaño grande. Se conserva sin modificaciones,
                     ya que no afecta la integración y puede utilizarse para visualización o validación.
                 </prov:reason>
             </prov:column>
