@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <!-- Entidad: Tabla lnusers -->
+    <prov:entity prov:id="ex:lnusers">
+        <prov:label>Tabla lnusers</prov:label>
+        <prov:description>
+            Tabla unificada de usuarios resultante de la combinación de los espacios
+            de identificadores de l2_users (Books Dataset) y l1usersstage1 (Amazon Reviews).
+            Representa el conjunto completo de usuarios normalizados dentro del modelo
+            integrado. Cada registro mantiene el campo "User-ID" único y consistente entre ambos orígenes.
+        </prov:description>
+
+        <prov:wasDerivedFrom prov:entity="ex:l2_users"/>
+        <prov:wasDerivedFrom prov:entity="ex:l1usersstage1"/>
+
+        <!-- Columnas -->
+        <prov:columns>
+            <prov:column>
+                <prov:name>User-ID</prov:name>
+                <prov:type>xsd:integer</prov:type>
+                <prov:reason>
+                    Identificador unificado del usuario.
+                    Proviene directamente de los conjuntos l2_users y l1usersstage1.
+                    No sufre transformación alguna, garantizando compatibilidad
+                    entre ambos orígenes.
+                </prov:reason>
+            </prov:column>
+        </prov:columns>
+    </prov:entity>
+
+    <!-- Actividad -->
+    <prov:activity prov:id="ex:merge_lnusers"
+                   prov:startTime="2025-10-29T00:00:00"
+                   prov:endTime="2025-10-29T00:05:00">
+        <prov:label>Unificación de identificadores de usuarios (lnusers)</prov:label>
+        <prov:description>
+            Proceso SQL ejecutado en PostgreSQL para crear la tabla lnusers
+            unificando los identificadores de usuario de l2_users y l1usersstage1
+            mediante la operación UNION ALL. La operación mantiene la totalidad de
+            los registros y no aplica transformaciones ni filtrado adicional.
+        </prov:description>
+        <prov:used prov:entity="ex:l2_users"/>
+        <prov:used prov:entity="ex:l1usersstage1"/>
+    </prov:activity>
+
+    <!-- Agentes -->
+    <prov:agent prov:id="ex:user_me">
+        <prov:label>Usuario Responsable</prov:label>
+        <prov:type>prov:Person</prov:type>
+        <prov:role>Ejecutó y supervisó la unificación del espacio de usuarios.</prov:role>
+    </prov:agent>
+    <prov:agent prov:id="ex:postgresql_db">
+        <prov:label>PostgreSQL Engine</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Ejecutó la operación UNION ALL para combinar los registros de usuario.</prov:role>
+    </prov:agent>
+
+    <!-- Relaciones -->
+    <prov:wasGeneratedBy prov:entity="ex:lnusers"
+                         prov:activity="ex:merge_lnusers"/>
+
+    <prov:wasAssociatedWith prov:activity="ex:merge_lnusers"
+                            prov:agent="ex:user_me"/>
+    <prov:wasAssociatedWith prov:activity="ex:merge_lnusers"
+                            prov:agent="ex:postgresql_db"/>
+
+</prov:document>

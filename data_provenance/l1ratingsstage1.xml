@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prov:document xmlns:prov="http://www.w3.org/ns/prov#"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
+    <!-- Entidad: Tabla l1ratingsstage1 -->
+    <prov:entity prov:id="ex:l1ratingsstage1">
+        <prov:label>Tabla l1ratingsstage1</prov:label>
+        <prov:description>
+            Tabla intermedia derivada de l1_ratings. Contiene las reseñas limpias, normalizadas y unificadas 
+            por usuario y libro. Se aplicaron filtros de duplicados, normalización de título, validación del 
+            identificador ISBN y transformación de escala de puntuación de 1–5 a 1–10.
+        </prov:description>
+        
+        <prov:wasDerivedFrom prov:entity="ex:l1_ratings"/>
+
+        <!-- Columnas -->
+        <prov:columns>
+            <prov:column>
+                <prov:name>id</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Identificador del libro (ISBN). Se normalizó a mayúsculas y se filtraron los registros 
+                    que no cumplían con el formato ISBN-10 válido mediante expresión regular. 
+                    Base para la vinculación posterior con l1booksstage2.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>user_id</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Identificador del usuario que emitió la reseña. 
+                    Se conservaron únicamente los registros con user_id no nulo.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>title</prov:name>
+                <prov:type>xsd:string</prov:type>
+                <prov:reason>
+                    Título del libro reseñado. Se normalizó (mayúsculas, eliminación de tildes, puntuación, 
+                    paréntesis y espacios redundantes) utilizando la extensión unaccent.
+                    Se utiliza como clave de vinculación con l1booksstage2.
+                </prov:reason>
+            </prov:column>
+
+            <prov:column>
+                <prov:name>review/score</prov:name>
+                <prov:type>xsd:decimal</prov:type>
+                <prov:reason>
+                    Calificación de la reseña. Se transformó la escala original (1–5) a una escala común (1–10)
+                    mediante multiplicación por 2, asegurando compatibilidad con otras fuentes.
+                </prov:reason>
+            </prov:column>
+        </prov:columns>
+    </prov:entity>
+
+    <!-- Actividad -->
+    <prov:activity prov:id="ex:normalize_l1ratingsstage1"
+                prov:startTime="2025-10-27T00:00:00"
+                prov:endTime="2025-10-27T01:00:00">
+        <prov:label>Normalización de reseñas (l1_ratings → l1ratingsstage1)</prov:label>
+        <prov:description>
+            Proceso SQL ejecutado en PostgreSQL que genera l1ratingsstage1 a partir de l1_ratings. 
+            Incluye:
+            - Eliminación de duplicados (DISTINCT ON id, user_id)
+            - Filtro de reseñas sin user_id
+            - Normalización del título (uso de unaccent, mayúsculas, limpieza de signos)
+            - Validación del ISBN (formato 10 caracteres, conversión a mayúsculas)
+            - Ajuste de escala de puntuación (×2)
+        </prov:description>
+        <prov:used prov:entity="ex:l1_ratings"/>
+    </prov:activity>
+    <prov:activity prov:id="ex:enrich_l1booksstage2_with_isbn"
+                prov:startTime="2025-10-27T01:00:00"
+                prov:endTime="2025-10-27T01:30:00">
+        <prov:label>Enriquecimiento de l1booksstage2 con ISBN</prov:label>
+        <prov:description>
+            Proceso SQL que cruza l1ratingsstage1 con l1booksstage2, agregando la columna ISBN
+            a los títulos presentes exactamente una vez en ambas tablas, para vincular libros y reseñas
+            sin introducir duplicados.
+        </prov:description>
+        <prov:used prov:entity="ex:l1ratingsstage1"/>
+        <prov:used prov:entity="ex:l1booksstage2"/>
+    </prov:activity>
+
+    <!-- Agentes -->
+    <prov:agent prov:id="ex:user_me">
+        <prov:label>Usuario Responsable</prov:label>
+        <prov:type>prov:Person</prov:type>
+        <prov:role>Ejecutó y supervisó la normalización, vinculación y actualización de tablas.</prov:role>
+    </prov:agent>
+    <prov:agent prov:id="ex:postgresql_db">
+        <prov:label>PostgreSQL Engine</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Motor que ejecutó las consultas SQL de limpieza, normalización y actualización cruzada.</prov:role>
+    </prov:agent>
+    <prov:agent prov:id="ex:unaccent_extension">
+        <prov:label>PostgreSQL unaccent extension</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Extensión utilizada para eliminar tildes y diacríticos en el proceso de normalización del título.</prov:role>
+    </prov:agent>
+
+    <!-- Relaciones -->
+    <prov:wasGeneratedBy prov:entity="ex:l1ratingsstage1"
+                         prov:activity="ex:normalize_l1ratingsstage1"/>
+
+    <prov:wasAssociatedWith prov:activity="ex:normalize_l1ratingsstage1"
+                            prov:agent="ex:user_me"/>
+    <prov:wasAssociatedWith prov:activity="ex:normalize_l1ratingsstage1"
+                            prov:agent="ex:postgresql_db"/>
+    <prov:wasAssociatedWith prov:activity="ex:normalize_l1ratingsstage1"
+                            prov:agent="ex:unaccent_extension"/>
+
+    <prov:wasAssociatedWith prov:activity="ex:enrich_l1booksstage2_with_isbn"
+                            prov:agent="ex:user_me"/>
+    <prov:wasAssociatedWith prov:activity="ex:enrich_l1booksstage2_with_isbn"
+                        prov:agent="ex:postgresql_db"/>
+
+</prov:document>

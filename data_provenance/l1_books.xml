@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
                xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
 
@@ -76,7 +77,6 @@
         <prov:type>prov:Person</prov:type>
         <prov:role>Responsable de la integración y limpieza de los datasets para generar l1_books.</prov:role>
     </prov:agent>
-
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>Postgresql Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
