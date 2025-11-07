@@ -84,7 +84,6 @@ export default function BookDetailPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navbar visible siempre */}
       <Navbar
         filters={{ title: search, genre, year }}
         onSearchChange={setSearch}
@@ -95,23 +94,26 @@ export default function BookDetailPage() {
       />
 
       <div className="max-w-5xl mx-auto p-6">
-        <Card className="overflow-hidden shadow-md">
+        {/* Card principal: imagen + detalles */}
+        <Card className="overflow-hidden shadow-md mb-6">
           <div className="flex flex-col md:flex-row">
+            {/* Imagen */}
             <div className="md:w-1/3">
               {book.imageurl && !imgError ? (
                 <img
                   src={book.imageurl}
                   alt={book.title}
-                  className="w-full h-full object-cover rounded-md block ml-2"
+                  className="w-full h-130 object-cover rounded-md block ml-2"
                   onError={() => setImgError(true)}
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 text-sm rounded-md ml-2">
+                <div className="w-full h-130 flex items-center justify-center bg-gray-200 text-gray-500 text-sm rounded-md ml-2">
                   No hay imagen disponible
                 </div>
               )}
             </div>
 
+            {/* Detalles del libro */}
             <div className="flex-1">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">
@@ -159,45 +161,46 @@ export default function BookDetailPage() {
                     </a>
                   </div>
                 )}
-
-                <Separator />
-
-                <div>
-                  <strong>Reviews:</strong>
-                  {book.reviews && book.reviews.length > 0 ? (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-                      {book.reviews.map((r) => (
-                        <Card key={r.user_id} className="p-3 shadow-sm border-muted">
-                          <CardContent className="p-0">
-                            <div className="flex justify-between items-center">
-                              <span className="text-sm text-muted-foreground">
-                                Usuario {r.user_id}
-                              </span>
-                              <Badge
-                                variant={
-                                  r.rating >= 8
-                                    ? "default"
-                                    : r.rating >= 5
-                                    ? "secondary"
-                                    : "destructive"
-                                }
-                              >
-                                {r.rating}/10
-                              </Badge>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-muted-foreground mt-2">
-                      No hay reviews disponibles.
-                    </p>
-                  )}
-                </div>
               </CardContent>
             </div>
           </div>
+        </Card>
+
+        {/* Card separado para reviews */}
+        <Card className="shadow-sm">
+          <CardContent>
+            <strong>Reviews:</strong>
+            {book.reviews && book.reviews.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+                {book.reviews.map((r) => (
+                  <Card key={r.user_id} className="p-3 shadow-sm border-muted">
+                    <CardContent className="p-0">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">
+                          Usuario {r.user_id}
+                        </span>
+                        <Badge
+                          variant={
+                            r.rating >= 8
+                              ? "default"
+                              : r.rating >= 5
+                              ? "secondary"
+                              : "destructive"
+                          }
+                        >
+                          {r.rating}/10
+                        </Badge>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <p className="text-muted-foreground mt-2">
+                No hay reviews disponibles.
+              </p>
+            )}
+          </CardContent>
         </Card>
       </div>
     </div>
