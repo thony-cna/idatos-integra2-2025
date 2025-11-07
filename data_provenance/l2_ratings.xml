@@ -6,7 +6,7 @@
     <prov:entity prov:id="ex:l2_ratings">
         <prov:label>Tabla l2_ratings</prov:label>
         <prov:description>Tabla derivada con calificaciones (ratings) por usuario para libros. Diseñada para enlazar con `books.csv` vía ISBN.</prov:description>
-        <prov:creationDate>fecha</prov:creationDate>
+        <prov:creationDate>2025-10-23T13:30:00</prov:creationDate>
         <prov:source>
             <prov:url>https://www.kaggle.com/datasets/saurabhbagchi/books-dataset</prov:url>
             <prov:downloadDate>2025-09-02T18:39:21</prov:downloadDate>
@@ -32,16 +32,16 @@
 
     <!-- Actividad: Creación de l2_ratings -->
     <prov:activity prov:id="ex:generate_l2_ratings"
-                   prov:startTime="2025-10-22T00:00:00"
-                   prov:endTime="2025-10-22T00:10:00">
+                   prov:startTime="2025-10-23T13:30:00"
+                   prov:endTime="2025-10-23T13:37:00">
         <prov:label>Generar la tabla de l2_ratings</prov:label>
         <prov:description>Extracción y transformación de las calificaciones para crear la tabla l2_ratings y su enlace con libros por ISBN.</prov:description>
     </prov:activity>
 
     <!-- Agentes involucrados -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Responsable de la extracción y transformación de datos para l2_ratings.</prov:role>
     </prov:agent>
 
@@ -57,7 +57,7 @@
     <prov:wasDerivedFrom prov:generatedEntity="ex:l2_ratings"
                          prov:usedEntity="ex:raw_ratings_source"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_ratings"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2_ratings"
                             prov:agent="ex:postgresql_db"/>
     <prov:used prov:activity="ex:generate_l2_ratings"

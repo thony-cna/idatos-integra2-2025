@@ -23,8 +23,7 @@
                 <prov:reason>
                     Identificador unificado del usuario.
                     Proviene directamente de los conjuntos l2_users y l1usersstage1.
-                    No sufre transformación alguna, garantizando compatibilidad
-                    entre ambos orígenes.
+                    No sufre transformación alguna, garantizando compatibilidad.
                 </prov:reason>
             </prov:column>
         </prov:columns>
@@ -32,8 +31,8 @@
 
     <!-- Actividad -->
     <prov:activity prov:id="ex:merge_lnusers"
-                   prov:startTime="2025-10-29T00:00:00"
-                   prov:endTime="2025-10-29T00:05:00">
+                   prov:startTime="2025-11-04T10:00:00"
+                   prov:endTime="2025-11-06T15:15:00">
         <prov:label>Unificación de identificadores de usuarios (lnusers)</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla lnusers
@@ -46,9 +45,9 @@
     </prov:activity>
 
     <!-- Agentes -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Ejecutó y supervisó la unificación del espacio de usuarios.</prov:role>
     </prov:agent>
     <prov:agent prov:id="ex:postgresql_db">
@@ -62,8 +61,7 @@
                          prov:activity="ex:merge_lnusers"/>
 
     <prov:wasAssociatedWith prov:activity="ex:merge_lnusers"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:merge_lnusers"
                             prov:agent="ex:postgresql_db"/>
-
 </prov:document>

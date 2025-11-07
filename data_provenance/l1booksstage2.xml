@@ -114,8 +114,8 @@
 
     <!-- Actividad -->
     <prov:activity prov:id="ex:deduplicate_l1booksstage2"
-                   prov:startTime="2025-10-26T00:00:00"
-                   prov:endTime="2025-10-26T01:00:00">
+                   prov:startTime="2025-11-01T10:00:00"
+                   prov:endTime="2025-11-01T10:30:00">
         <prov:label>Eliminación de duplicados y registros vacíos en l1booksstage1</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla l1booksstage2 a partir de l1booksstage1.
@@ -126,8 +126,8 @@
         <prov:used prov:entity="ex:l1booksstage1"/>
     </prov:activity>
     <prov:activity prov:id="ex:enrich_l1booksstage2_with_isbn"
-                   prov:startTime="2025-10-27T00:00:00"
-                   prov:endTime="2025-10-27T01:30:00">
+                   prov:startTime="2025-11-06T13:02:00"
+                   prov:endTime="2025-11-06T13:17:00">
         <prov:label>Enriquecimiento de l1booksstage2 con identificadores ISBN</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL que agrega la columna isbn a l1booksstage2.
@@ -139,9 +139,9 @@
     </prov:activity>
 
     <!-- Agentes involucrados -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Ejecutó y supervisó la deduplicación y limpieza.</prov:role>
     </prov:agent>
     <prov:agent prov:id="ex:postgresql_db">
@@ -155,7 +155,7 @@
                          prov:activity="ex:deduplicate_l1booksstage2"/>
 
     <prov:wasAssociatedWith prov:activity="ex:deduplicate_l1booksstage2"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:deduplicate_l1booksstage2"
                             prov:agent="ex:postgresql_db"/>
 

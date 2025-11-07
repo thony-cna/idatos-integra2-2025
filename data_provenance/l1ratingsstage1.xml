@@ -57,8 +57,8 @@
 
     <!-- Actividad -->
     <prov:activity prov:id="ex:normalize_l1ratingsstage1"
-                prov:startTime="2025-10-27T00:00:00"
-                prov:endTime="2025-10-27T01:00:00">
+                prov:startTime="2025-11-05T10:00:00"
+                prov:endTime="2025-11-06T13:00:00">
         <prov:label>Normalización de reseñas (l1_ratings → l1ratingsstage1)</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL que genera l1ratingsstage1 a partir de l1_ratings. 
@@ -72,8 +72,8 @@
         <prov:used prov:entity="ex:l1_ratings"/>
     </prov:activity>
     <prov:activity prov:id="ex:enrich_l1booksstage2_with_isbn"
-                prov:startTime="2025-10-27T01:00:00"
-                prov:endTime="2025-10-27T01:30:00">
+                prov:startTime="2025-11-06T13:02:00"
+                prov:endTime="2025-11-06T13:17:00">
         <prov:label>Enriquecimiento de l1booksstage2 con ISBN</prov:label>
         <prov:description>
             Proceso SQL que cruza l1ratingsstage1 con l1booksstage2, agregando la columna ISBN
@@ -85,9 +85,9 @@
     </prov:activity>
 
     <!-- Agentes -->
-    <prov:agent prov:id="ex:user_me">
-        <prov:label>Usuario Responsable</prov:label>
-        <prov:type>prov:Person</prov:type>
+    <prov:agent prov:id="ex:integra2">
+        <prov:label>Grupo Integra2</prov:label>
+        <prov:type>prov:Organization</prov:type>
         <prov:role>Ejecutó y supervisó la normalización, vinculación y actualización de tablas.</prov:role>
     </prov:agent>
     <prov:agent prov:id="ex:postgresql_db">
@@ -106,7 +106,7 @@
                          prov:activity="ex:normalize_l1ratingsstage1"/>
 
     <prov:wasAssociatedWith prov:activity="ex:normalize_l1ratingsstage1"
-                            prov:agent="ex:user_me"/>
+                            prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:normalize_l1ratingsstage1"
                             prov:agent="ex:postgresql_db"/>
     <prov:wasAssociatedWith prov:activity="ex:normalize_l1ratingsstage1"
