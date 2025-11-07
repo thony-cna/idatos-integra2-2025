@@ -2,9 +2,9 @@
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
                xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
 
-    <!-- Entidad: Tabla l2_ratings -->
-    <prov:entity prov:id="ex:l2_ratings">
-        <prov:label>Tabla l2_ratings</prov:label>
+    <!-- Entidad: Tabla l2ratings -->
+    <prov:entity prov:id="ex:l2ratings">
+        <prov:label>Tabla l2ratings</prov:label>
         <prov:description>Tabla derivada con calificaciones (ratings) por usuario para libros. Diseñada para enlazar con `books.csv` vía ISBN.</prov:description>
         <prov:creationDate>2025-10-23T13:30:00</prov:creationDate>
         <prov:source>
@@ -30,8 +30,8 @@
         </prov:columns>
     </prov:entity>
 
-    <!-- Actividad: Creación de l2_ratings -->
-    <prov:activity prov:id="ex:generate_l2_ratings"
+    <!-- Actividad: Creación de l2ratings -->
+    <prov:activity prov:id="ex:generate_l2ratings"
                    prov:startTime="2025-10-23T13:30:00"
                    prov:endTime="2025-10-23T13:37:00">
         <prov:label>Generar la tabla de l2_ratings</prov:label>
@@ -42,7 +42,7 @@
     <prov:agent prov:id="ex:integra2">
         <prov:label>Grupo Integra2</prov:label>
         <prov:type>prov:Organization</prov:type>
-        <prov:role>Responsable de la extracción y transformación de datos para l2_ratings.</prov:role>
+        <prov:role>Responsable de la extracción y transformación de datos para l2ratings.</prov:role>
     </prov:agent>
 
     <prov:agent prov:id="ex:postgresql_db">
@@ -52,15 +52,15 @@
     </prov:agent>
 
     <!-- Relaciones -->
-    <prov:wasGeneratedBy prov:entity="ex:l2_ratings"
-                         prov:activity="ex:generate_l2_ratings"/>
-    <prov:wasDerivedFrom prov:generatedEntity="ex:l2_ratings"
+    <prov:wasGeneratedBy prov:entity="ex:l2ratings"
+                         prov:activity="ex:generate_l2ratings"/>
+    <prov:wasDerivedFrom prov:generatedEntity="ex:l2ratings"
                          prov:usedEntity="ex:raw_ratings_source"/>
-    <prov:wasAssociatedWith prov:activity="ex:generate_l2_ratings"
+    <prov:wasAssociatedWith prov:activity="ex:generate_l2ratings"
                             prov:agent="ex:integra2"/>
-    <prov:wasAssociatedWith prov:activity="ex:generate_l2_ratings"
+    <prov:wasAssociatedWith prov:activity="ex:generate_l2ratings"
                             prov:agent="ex:postgresql_db"/>
-    <prov:used prov:activity="ex:generate_l2_ratings"
+    <prov:used prov:activity="ex:generate_l2ratings"
                prov:entity="ex:raw_ratings_source"/>
 
 </prov:document>

@@ -6,13 +6,13 @@
     <prov:entity prov:id="ex:l1booksstage1">
         <prov:label>Tabla l1booksstage1</prov:label>
         <prov:description>
-            Tabla intermedia generada a partir de l1_books, donde se aplican procesos de normalización
+            Tabla intermedia generada a partir de l1books, donde se aplican procesos de normalización
             sintáctica y limpieza de texto sobre los campos title, authors, publisher y publisheddate.
             Su objetivo es estandarizar formatos, eliminar caracteres no deseados y preparar los datos
             para el proceso de matching e integración posterior.
         </prov:description>
         
-        <prov:wasDerivedFrom prov:entity="ex:l1_books"/>
+        <prov:wasDerivedFrom prov:entity="ex:l1books"/>
 
         <!-- Columnas conservadas y normalizadas -->
         <prov:columns>
@@ -107,14 +107,14 @@
     <prov:activity prov:id="ex:normalize_l1booksstage1"
                    prov:startTime="2025-11-01T10:00:00"
                    prov:endTime="2025-11-01T10:40:00">
-        <prov:label>Normalización de tabla l1_books → l1booksstage1</prov:label>
+        <prov:label>Normalización de tabla l1books → l1booksstage1</prov:label>
         <prov:description>
             Proceso de transformación SQL ejecutado en PostgreSQL para limpiar y normalizar los textos
-            de l1_books. Incluye eliminación de tildes mediante la extensión unaccent, sustitución de "Ñ"
+            de l1books. Incluye eliminación de tildes mediante la extensión unaccent, sustitución de "Ñ"
             por "N", eliminación de signos y puntuación, supresión de contenido entre paréntesis o corchetes,
             y compresión de espacios. En publisheddate se extrajo únicamente el año válido.
         </prov:description>
-        <prov:used prov:entity="ex:l1_books"/>
+        <prov:used prov:entity="ex:l1books"/>
     </prov:activity>
 
     <!-- Agentes involucrados -->

@@ -2,9 +2,9 @@
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
                xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
 
-    <!-- Entidad: Tabla l1_ratings -->
-    <prov:entity prov:id="ex:l1_ratings">
-        <prov:label>Tabla l1_ratings</prov:label>
+    <!-- Entidad: Tabla l1ratings -->
+    <prov:entity prov:id="ex:l1ratings">
+        <prov:label>Tabla l1ratings</prov:label>
         <prov:description>Tabla consolidada con información de reseñas/valoraciones (ratings) preparada para análisis; incluye metadatos por columna.</prov:description>
         <prov:creationDate>fecha</prov:creationDate>
         <prov:source>
@@ -70,19 +70,19 @@
         </prov:columns>
     </prov:entity>
 
-    <!-- Actividad: Creación de l1_ratings -->
-    <prov:activity prov:id="ex:generate_l1_ratings"
+    <!-- Actividad: Creación de l1ratings -->
+    <prov:activity prov:id="ex:generate_l1ratings"
                    prov:startTime="2025-10-23T13:30:00"
                    prov:endTime="2025-10-23T13:37:00">
-        <prov:label>Generación de l1_ratings</prov:label>
-        <prov:description>Proceso de extracción, limpieza y consolidación de datos de reseñas para producir la tabla l1_ratings.</prov:description>
+        <prov:label>Generación de l1ratings</prov:label>
+        <prov:description>Proceso de extracción, limpieza y consolidación de datos de reseñas para producir la tabla l1ratings.</prov:description>
     </prov:activity>
 
     <!-- Agentes involucrados -->
     <prov:agent prov:id="ex:integra2">
         <prov:label>Grupo Integra2</prov:label>
         <prov:type>prov:Organization</prov:type>
-        <prov:role>Responsable de la extracción y limpieza de datos para generar l1_ratings.</prov:role>
+        <prov:role>Responsable de la extracción y limpieza de datos para generar l1ratings.</prov:role>
     </prov:agent>
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>Postgresql Import</prov:label>
@@ -91,15 +91,15 @@
     </prov:agent>
 
     <!-- Relaciones -->
-    <prov:wasGeneratedBy prov:entity="ex:l1_ratings"
-                         prov:activity="ex:generate_l1_ratings"/>
-    <prov:wasDerivedFrom prov:generatedEntity="ex:l1_ratings"
+    <prov:wasGeneratedBy prov:entity="ex:l1ratings"
+                         prov:activity="ex:generate_l1ratings"/>
+    <prov:wasDerivedFrom prov:generatedEntity="ex:l1ratings"
                          prov:usedEntity="ex:raw_ratings_source"/>
-    <prov:wasAssociatedWith prov:activity="ex:generate_l1_ratings"
+    <prov:wasAssociatedWith prov:activity="ex:generate_l1ratings"
                             prov:agent="ex:integra2"/>
-    <prov:wasAssociatedWith prov:activity="ex:generate_l1_ratings"
+    <prov:wasAssociatedWith prov:activity="ex:generate_l1ratings"
                             prov:agent="ex:script_etl"/>
-    <prov:used prov:activity="ex:generate_l1_ratings"
+    <prov:used prov:activity="ex:generate_l1ratings"
                prov:entity="ex:raw_ratings_source"/>
 
 </prov:document>

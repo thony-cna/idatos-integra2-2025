@@ -6,13 +6,13 @@
     <prov:entity prov:id="ex:l2booksstage1">
         <prov:label>Tabla l2booksstage1</prov:label>
         <prov:description>
-            Tabla intermedia derivada de l2_books. Se aplica un proceso de limpieza y normalización
+            Tabla intermedia derivada de l2books. Se aplica un proceso de limpieza y normalización
             de texto sobre los campos ISBN, Book-Title, Book-Author y publisher, garantizando consistencia
             en formato, mayúsculas y validez estructural del identificador ISBN-10.
             Esta tabla prepara los datos para la integración posterior con l1books.
         </prov:description>
 
-        <prov:wasDerivedFrom prov:entity="ex:l2_books"/>
+        <prov:wasDerivedFrom prov:entity="ex:l2books"/>
 
         <!-- Columnas -->
         <prov:columns>
@@ -83,16 +83,16 @@
     <prov:activity prov:id="ex:normalize_l2booksstage1"
                    prov:startTime="2025-11-01T10:00:00"
                    prov:endTime="2025-11-01T10:10:00">
-        <prov:label>Normalización y validación de tabla l2_books → l2booksstage1</prov:label>
+        <prov:label>Normalización y validación de tabla l2books → l2booksstage1</prov:label>
         <prov:description>
-            Proceso SQL ejecutado en PostgreSQL que crea l2booksstage1 a partir de l2_books.
+            Proceso SQL ejecutado en PostgreSQL que crea l2booksstage1 a partir de l2books.
             Se aplicaron transformaciones sintácticas y validaciones estructurales:
             - Normalización de texto en Book-Title, Book-Author y publisher
               (eliminando tildes, sustitución de "ñ" por "n", signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas).
             - Limpieza del ISBN mediante expresiones regulares, truncamiento al formato ISBN-10 válido
               y eliminación de registros no conformes o duplicados potenciales.
         </prov:description>
-        <prov:used prov:entity="ex:l2_books"/>
+        <prov:used prov:entity="ex:l2books"/>
     </prov:activity>
 
     <!-- Agentes -->
