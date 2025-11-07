@@ -94,10 +94,8 @@ export default function BookDetailPage() {
       />
 
       <div className="max-w-5xl mx-auto p-6">
-        {/* Card principal: imagen + detalles */}
         <Card className="overflow-hidden shadow-md mb-6">
           <div className="flex flex-col md:flex-row">
-            {/* Imagen */}
             <div className="md:w-1/3">
               {book.imageurl && !imgError ? (
                 <img
@@ -113,7 +111,6 @@ export default function BookDetailPage() {
               )}
             </div>
 
-            {/* Detalles del libro */}
             <div className="flex-1">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">
@@ -166,7 +163,6 @@ export default function BookDetailPage() {
           </div>
         </Card>
 
-        {/* Card separado para reviews */}
         <Card className="shadow-sm">
           <CardContent>
             <strong>Reviews:</strong>
