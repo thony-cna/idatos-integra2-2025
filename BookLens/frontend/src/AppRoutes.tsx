@@ -1,5 +1,4 @@
 // src/Routes.tsx
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import BooksPage from "@/pages/BooksPage";
 import BookDetailPage from "@/pages/BookDetailPage";
