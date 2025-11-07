@@ -62,10 +62,6 @@ Colección de scripts SQL utilizados en el proceso de integración y transformac
 - **Base de Datos**: PostgreSQL
 - **Formatos de Datos**: CSV, XML, RDF
 
-## Instalación y Uso
-
-[Instrucciones pendientes de agregar]
-
 ## Autores
 
 - Anthony Cuña
