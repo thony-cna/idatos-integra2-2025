@@ -31,8 +31,8 @@
 
     <!-- Actividad -->
     <prov:activity prov:id="ex:merge_lnusers"
-                   prov:startTime="2025-10-29T00:00:00"
-                   prov:endTime="2025-10-29T00:05:00">
+                   prov:startTime="2025-11-04T10:00:00"
+                   prov:endTime="2025-11-06T15:15:00">
         <prov:label>Unificación de identificadores de usuarios (lnusers)</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla lnusers

@@ -39,8 +39,8 @@
 
     <!-- Actividad -->
     <prov:activity prov:id="ex:generate_l1usersstage1"
-                   prov:startTime="2025-10-28T00:00:00"
-                   prov:endTime="2025-10-28T00:15:00">
+                   prov:startTime="2025-11-03T10:00:00"
+                   prov:endTime="2025-11-03T10:22:00">
         <prov:label>Generación de identificadores únicos de usuarios (l1usersstage1)</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla l1usersstage1 a partir

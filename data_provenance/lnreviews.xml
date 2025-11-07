@@ -51,8 +51,8 @@
 
     <!-- Actividad -->
     <prov:activity prov:id="ex:integrate_lnreviews"
-                prov:startTime="2025-10-29T00:10:00"
-                prov:endTime="2025-10-29T00:40:00">
+                prov:startTime="2025-11-04T10:00:00"
+                   prov:endTime="2025-11-06T15:15:00">
         <prov:label>Integración y depuración de reseñas (lnreviews)</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla lnreviews,

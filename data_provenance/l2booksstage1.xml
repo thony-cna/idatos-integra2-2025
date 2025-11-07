@@ -81,8 +81,8 @@
 
     <!-- Actividad -->
     <prov:activity prov:id="ex:normalize_l2booksstage1"
-                   prov:startTime="2025-10-26T02:00:00"
-                   prov:endTime="2025-10-26T04:00:00">
+                   prov:startTime="2025-11-01T10:00:00"
+                   prov:endTime="2025-11-01T10:10:00">
         <prov:label>Normalización y validación de tabla l2_books → l2booksstage1</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL que crea l2booksstage1 a partir de l2_books.

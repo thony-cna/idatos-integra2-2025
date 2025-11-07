@@ -66,7 +66,8 @@
     </prov:entity>
 
     <prov:activity prov:id="ex:generate_l1_books"
-                   prov:startTime="2025-10-22T00:00:00">
+                   prov:startTime="2025-10-23T13:30:00"
+                   prov:endTime="2025-10-23T13:37:00">
         <prov:label>Generar la tabla de l1_books</prov:label>
         <prov:description>Importar los datos del dataset de Amazon Books Reviews desde el CSV, cargandolos en una BD de postgresql</prov:description>
     </prov:activity>
