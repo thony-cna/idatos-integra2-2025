@@ -1,105 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
-               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+               xmlns:ex="http://example.org/">
 
     <!-- Entidad: Tabla lnbooks -->
     <prov:entity prov:id="ex:lnbooks">
         <prov:label>Tabla lnbooks</prov:label>
-        <prov:description>
+        <prov:type>prov:Collection</prov:type>
+        <dcterms:description>
             Tabla final integrada de libros del modelo LN. Combina información 
             proveniente de los datasets l2booksstage1 (Books Dataset) y l1booksstage2 
             (Amazon Books) para obtener un catálogo unificado de títulos, autores, 
             editoriales y metadatos enriquecidos. 
             La tabla resultante consolida ISBN, título, autor, año, editorial y 
             recursos asociados (descripción, imagen, categorías, enlaces externos).
-        </prov:description>
+        </dcterms:description>
 
         <prov:wasDerivedFrom prov:entity="ex:l2booksstage1"/>
         <prov:wasDerivedFrom prov:entity="ex:l1booksstage2"/>
 
-        <!-- Columnas -->
-        <prov:columns>
-            <prov:column>
-                <prov:name>identifier</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Identificador principal del libro (ISBN). 
-                    Proviene directamente de l2booksstage1 o, en su defecto, 
-                    se toma de l1booksstage2 cuando no existe en l2.
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>title</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Título normalizado del libro. Utilizado como punto de 
-                    emparejamiento en el proceso de fuzzy matching (pg_trgm).
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>creator</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Autor o creador principal del libro. Proviene del campo 
-                    Book-Author (l2) o del arreglo authors (l1).
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>description</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Descripción o sinopsis del libro. Se enriquece mediante 
-                    matching registros de l1booksstage2.
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>imageurl</prov:name>
-                <prov:type>xsd:anyURI</prov:type>
-                <prov:reason>
-                    URL de imagen del libro (Image-URL-L). 
-                    Se conserva desde l2booksstage1.
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>preview</prov:name>
-                <prov:type>xsd:anyURI</prov:type>
-                <prov:reason>
-                    Enlace a vista previa del libro, incorporado desde l1booksstage2.
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>publisher</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Editorial del libro. Utilizada como campo auxiliar en 
-                    la comparación por similitud (pg_trgm) para validar coincidencias.
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>date</prov:name>
-                <prov:type>xsd:gYear</prov:type>
-                <prov:reason>
-                    Año de publicación. Usado como criterio de verificación
-                    para asegurar correspondencia temporal.
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>source</prov:name>
-                <prov:type>xsd:anyURI</prov:type>
-                <prov:reason>
-                    Fuente o enlace informativo asociado. 
-                    Incorporado desde l1booksstage2 en coincidencias exitosas.
-                </prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>genres</prov:name>
-                <prov:type>xsd:string[]</prov:type>
-                <prov:reason>
-                    Categorías o géneros del libro. 
-                    Provenientes de l1booksstage2.
-                </prov:reason>
-            </prov:column>
-        </prov:columns>
+        <!-- Columnas (miembros de la colección) -->
+        <prov:hadMember prov:entity="ex:identifier"/>
+        <prov:hadMember prov:entity="ex:title"/>
+        <prov:hadMember prov:entity="ex:creator"/>
+        <prov:hadMember prov:entity="ex:description"/>
+        <prov:hadMember prov:entity="ex:imageurl"/>
+        <prov:hadMember prov:entity="ex:preview"/>
+        <prov:hadMember prov:entity="ex:publisher"/>
+        <prov:hadMember prov:entity="ex:date"/>
+        <prov:hadMember prov:entity="ex:source"/>
+        <prov:hadMember prov:entity="ex:genres"/>
+    </prov:entity>
+
+    <!-- Columnas como entidades individuales -->
+    <prov:entity prov:id="ex:identifier">
+        <prov:label>identifier</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Identificador principal del libro (ISBN). 
+            Proviene directamente de l2booksstage1 o, en su defecto, 
+            se toma de l1booksstage2 cuando no existe en l2.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:title">
+        <prov:label>title</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Título normalizado del libro. Utilizado como punto de 
+            emparejamiento en el proceso de fuzzy matching (pg_trgm).
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:creator">
+        <prov:label>creator</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Autor o creador principal del libro. Proviene del campo 
+            Book-Author (l2) o del arreglo authors (l1).
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:description">
+        <prov:label>description</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Descripción o sinopsis del libro. Se enriquece mediante 
+            matching registros de l1booksstage2.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:imageurl">
+        <prov:label>imageurl</prov:label>
+        <prov:type>xsd:anyURI</prov:type>
+        <dcterms:description>
+            URL de imagen del libro (Image-URL-L). 
+            Se conserva desde l2booksstage1.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:preview">
+        <prov:label>preview</prov:label>
+        <prov:type>xsd:anyURI</prov:type>
+        <dcterms:description>
+            Enlace a vista previa del libro, incorporado desde l1booksstage2.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:publisher">
+        <prov:label>publisher</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Editorial del libro. Utilizada como campo auxiliar en 
+            la comparación por similitud (pg_trgm) para validar coincidencias.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:date">
+        <prov:label>date</prov:label>
+        <prov:type>xsd:gYear</prov:type>
+        <dcterms:description>
+            Año de publicación. Usado como criterio de verificación
+            para asegurar correspondencia temporal.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:source">
+        <prov:label>source</prov:label>
+        <prov:type>xsd:anyURI</prov:type>
+        <dcterms:description>
+            Fuente o enlace informativo asociado. 
+            Incorporado desde l1booksstage2 en coincidencias exitosas.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:genres">
+        <prov:label>genres</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Categorías o géneros del libro. 
+            Provenientes de l1booksstage2.
+        </dcterms:description>
     </prov:entity>
 
     <!-- Actividad -->
@@ -107,7 +129,7 @@
                    prov:startTime="2025-10-27T11:00:00"
                    prov:endTime="2025-11-06T15:05:00">
         <prov:label>Integración y enriquecimiento de libros (lnbooks)</prov:label>
-        <prov:description>
+        <dcterms:description>
             Proceso SQL ejecutado en PostgreSQL para generar la tabla lnbooks, 
             integrando datos desde l2booksstage1 y l1booksstage2.
             La actividad incluyó:
@@ -119,8 +141,7 @@
                 poseen correspondencia previa en lnbooks.
             Se emplearon índices GIN y funciones de similitud trigram 
             para mejorar la detección de coincidencias aproximadas.
-        </prov:description>
-
+        </dcterms:description>
         <prov:used prov:entity="ex:l2booksstage1"/>
         <prov:used prov:entity="ex:l1booksstage2"/>
     </prov:activity>
@@ -134,6 +155,7 @@
             libros para el modelo LN, asegurando la consolidación entre datasets.
         </prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>PostgreSQL Engine</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
@@ -142,6 +164,7 @@
             durante la integración de lnbooks.
         </prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:pg_trgm_extension">
         <prov:label>Extensión PostgreSQL pg_trgm</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
@@ -154,7 +177,6 @@
     <!-- Relaciones -->
     <prov:wasGeneratedBy prov:entity="ex:lnbooks"
                          prov:activity="ex:integrate_lnbooks"/>
-
     <prov:wasAssociatedWith prov:activity="ex:integrate_lnbooks"
                             prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:integrate_lnbooks"

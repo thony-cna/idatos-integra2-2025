@@ -1,33 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
-               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+               xmlns:ex="http://example.org/">
 
     <!-- Entidad: Tabla l2users -->
     <prov:entity prov:id="ex:l2users">
         <prov:label>Tabla l2users</prov:label>
-        <prov:description>Tabla derivada con información de usuarios recolectada desde el dataset de reseñas; contiene ubicación y edad cuando están disponibles.</prov:description>
-        <prov:creationDate>fecha</prov:creationDate>
-        <prov:source>
-            <prov:url>https://www.kaggle.com/datasets/saurabhbagchi/books-dataset</prov:url>
-            <prov:downloadDate>2025-09-02T18:39:21</prov:downloadDate>
-        </prov:source>
-        <prov:columns>
-            <prov:column>
-                <prov:name>User-ID</prov:name>
-                <prov:type>xsd:integer</prov:type>
-                <prov:reason>Identificador único del usuario.</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>location</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Ubicación declarada por el usuario (normalmente ciudad, estado, país).</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>age</prov:name>
-                <prov:type>xsd:integer</prov:type>
-                <prov:reason>Edad declarada del usuario (puede contener valores nulos o inconsistentes).</prov:reason>
-            </prov:column>
-        </prov:columns>
+        <prov:type>prov:Collection</prov:type>
+        <dcterms:description>
+            Tabla derivada con información de usuarios recolectada desde el dataset de reseñas;
+            contiene ubicación y edad cuando están disponibles.
+        </dcterms:description>
+        <dcterms:date>2025-09-02T18:39:21</dcterms:date>
+        <dcterms:source>https://www.kaggle.com/datasets/saurabhbagchi/books-dataset</dcterms:source>
+
+        <!-- Miembros (columnas) -->
+        <prov:hadMember prov:entity="ex:User-ID"/>
+        <prov:hadMember prov:entity="ex:location"/>
+        <prov:hadMember prov:entity="ex:age"/>
+    </prov:entity>
+
+    <!-- Columnas -->
+    <prov:entity prov:id="ex:User-ID">
+        <prov:label>User-ID</prov:label>
+        <prov:type>xsd:integer</prov:type>
+        <dcterms:description>
+            Identificador único del usuario.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:location">
+        <prov:label>location</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Ubicación declarada por el usuario (normalmente ciudad, estado, país).
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:age">
+        <prov:label>age</prov:label>
+        <prov:type>xsd:integer</prov:type>
+        <dcterms:description>
+            Edad declarada del usuario (puede contener valores nulos o inconsistentes).
+        </dcterms:description>
     </prov:entity>
 
     <!-- Actividad: Creación de l2users -->
@@ -35,31 +51,32 @@
                    prov:startTime="2025-10-23T13:30:00"
                    prov:endTime="2025-10-23T13:37:00">
         <prov:label>Generar la tabla de l2users</prov:label>
-        <prov:description>Extracción y normalización de datos de usuarios desde las reseñas para generar la tabla l2users.</prov:description>
+        <dcterms:description>
+            Extracción y normalización de datos de usuarios desde las reseñas para generar la tabla l2users.
+        </dcterms:description>
     </prov:activity>
 
     <!-- Agentes involucrados -->
     <prov:agent prov:id="ex:integra2">
         <prov:label>Grupo Integra2</prov:label>
         <prov:type>prov:Organization</prov:type>
-        <prov:role>Responsable de la extracción y normalización de datos para l2users.</prov:role>
+        <prov:role>
+            Responsable de la extracción y normalización de datos para l2users.
+        </prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:postgresql_db">
-        <prov:label>Postgresql Import</prov:label>
+        <prov:label>PostgreSQL Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
-        <prov:role>Herramienta para cargar los datos</prov:role>
+        <prov:role>Herramienta para cargar los datos.</prov:role>
     </prov:agent>
 
     <!-- Relaciones -->
     <prov:wasGeneratedBy prov:entity="ex:l2users"
                          prov:activity="ex:generate_l2users"/>
-    <prov:wasDerivedFrom prov:generatedEntity="ex:l2users"
-                         prov:usedEntity="ex:raw_users_source"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2users"
                             prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l2users"
                             prov:agent="ex:postgresql_db"/>
-    <prov:used prov:activity="ex:generate_l2users"
-               prov:entity="ex:raw_users_source"/>
 
 </prov:document>

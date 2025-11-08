@@ -1,85 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
-               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+               xmlns:ex="http://example.org/">
 
     <!-- Entidad: Tabla l1ratingsstage1 -->
     <prov:entity prov:id="ex:l1ratingsstage1">
         <prov:label>Tabla l1ratingsstage1</prov:label>
-        <prov:description>
+        <prov:type>prov:Collection</prov:type>
+        <dcterms:description>
             Tabla intermedia derivada de l1ratings. Contiene las reseñas limpias, normalizadas y unificadas 
             por usuario y libro. Se aplicaron filtros de duplicados, normalización de título, validación del 
-            identificador ISBN y transformación de escala de puntuación de 1–5 a 1–10.
-        </prov:description>
-        
+            identificador ISBN y transformación de escala de puntuación de 1–5 a 0–10.
+        </dcterms:description>
+
         <prov:wasDerivedFrom prov:entity="ex:l1ratings"/>
 
-        <!-- Columnas -->
-        <prov:columns>
-            <prov:column>
-                <prov:name>id</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Identificador del libro (ISBN). Se normalizó a mayúsculas y se filtraron los registros 
-                    que no cumplían con el formato ISBN-10 válido mediante expresión regular. 
-                    Base para la vinculación posterior con l1booksstage2.
-                </prov:reason>
-            </prov:column>
-
-            <prov:column>
-                <prov:name>user_id</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Identificador del usuario que emitió la reseña. 
-                    Se conservaron únicamente los registros con user_id no nulo.
-                </prov:reason>
-            </prov:column>
-
-            <prov:column>
-                <prov:name>title</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Título del libro reseñado. Se normalizó (mayúsculas, eliminación de tildes, puntuación, 
-                    paréntesis y espacios redundantes) utilizando la extensión unaccent.
-                    Se utiliza como clave de vinculación con l1booksstage2.
-                </prov:reason>
-            </prov:column>
-
-            <prov:column>
-                <prov:name>review/score</prov:name>
-                <prov:type>xsd:integer</prov:type>
-                <prov:reason>
-                    Calificación de la reseña. Se transformó la escala original (1–5) a una escala común (1–10)
-                    mediante multiplicación por 2, asegurando compatibilidad con otras fuentes.
-                </prov:reason>
-            </prov:column>
-        </prov:columns>
+        <!-- Miembros (columnas) -->
+        <prov:hadMember prov:entity="ex:id"/>
+        <prov:hadMember prov:entity="ex:user_id"/>
+        <prov:hadMember prov:entity="ex:title"/>
+        <prov:hadMember prov:entity="ex:review_score"/>
     </prov:entity>
 
-    <!-- Actividad -->
+    <!-- Definición de columnas como entidades -->
+    <prov:entity prov:id="ex:id">
+        <prov:label>id</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Identificador del libro (ISBN). Se normalizó a mayúsculas y se filtraron los registros 
+            que no cumplían con el formato ISBN-10 válido mediante expresión regular. 
+            Base para la vinculación posterior con l1booksstage2.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:user_id">
+        <prov:label>user_id</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Identificador del usuario que emitió la reseña. 
+            Se conservaron únicamente los registros con user_id no nulo.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:title">
+        <prov:label>title</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Título del libro reseñado. Se normalizó (mayúsculas, eliminación de tildes, puntuación, 
+            paréntesis y espacios redundantes) utilizando la extensión unaccent.
+            Se utiliza como clave de vinculación con l1booksstage2.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:review_score">
+        <prov:label>review/score</prov:label>
+        <prov:type>xsd:integer</prov:type>
+        <dcterms:description>
+            Calificación de la reseña. Se transformó la escala original (1–5) a una escala común (0–10)
+            mediante multiplicación por 2, asegurando compatibilidad con otras fuentes.
+        </dcterms:description>
+    </prov:entity>
+
+    <!-- Actividades -->
     <prov:activity prov:id="ex:normalize_l1ratingsstage1"
-                prov:startTime="2025-11-05T10:00:00"
-                prov:endTime="2025-11-06T13:00:00">
-        <prov:label>Normalización de reseñas (l1_ratings → l1ratingsstage1)</prov:label>
-        <prov:description>
-            Proceso SQL ejecutado en PostgreSQL que genera l1ratingsstage1 a partir de l1_ratings. 
+                   prov:startTime="2025-11-05T10:00:00"
+                   prov:endTime="2025-11-06T13:00:00">
+        <prov:label>Normalización de reseñas (l1ratings → l1ratingsstage1)</prov:label>
+        <dcterms:description>
+            Proceso SQL ejecutado en PostgreSQL que genera l1ratingsstage1 a partir de l1ratings. 
             Incluye:
             - Eliminación de duplicados (DISTINCT ON id, user_id)
             - Filtro de reseñas sin user_id
             - Normalización del título (uso de unaccent, mayúsculas, limpieza de signos)
             - Validación del ISBN (formato 10 caracteres, conversión a mayúsculas)
             - Ajuste de escala de puntuación (×2)
-        </prov:description>
+        </dcterms:description>
         <prov:used prov:entity="ex:l1ratings"/>
     </prov:activity>
+
     <prov:activity prov:id="ex:enrich_l1booksstage2_with_isbn"
-                prov:startTime="2025-11-06T13:02:00"
-                prov:endTime="2025-11-06T13:17:00">
+                   prov:startTime="2025-11-06T13:02:00"
+                   prov:endTime="2025-11-06T13:17:00">
         <prov:label>Enriquecimiento de l1booksstage2 con ISBN</prov:label>
-        <prov:description>
+        <dcterms:description>
             Proceso SQL que cruza l1ratingsstage1 con l1booksstage2, agregando la columna ISBN
             a los títulos presentes exactamente una vez en ambas tablas, para vincular libros y reseñas
             sin introducir duplicados.
-        </prov:description>
+        </dcterms:description>
         <prov:used prov:entity="ex:l1ratingsstage1"/>
         <prov:used prov:entity="ex:l1booksstage2"/>
     </prov:activity>
@@ -90,15 +98,23 @@
         <prov:type>prov:Organization</prov:type>
         <prov:role>Ejecutó y supervisó la normalización, vinculación y actualización de tablas.</prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>PostgreSQL Engine</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Motor que ejecutó las consultas SQL de limpieza, normalización y actualización cruzada.</prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:unaccent_extension">
         <prov:label>PostgreSQL unaccent extension</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Extensión utilizada para eliminar tildes y diacríticos en el proceso de normalización del título.</prov:role>
+    </prov:agent>
+
+    <prov:agent prov:id="ex:user_me">
+        <prov:label>Usuario ejecutor</prov:label>
+        <prov:type>prov:Person</prov:type>
+        <prov:role>Responsable de ejecutar manualmente la vinculación y verificación del cruce de ISBN.</prov:role>
     </prov:agent>
 
     <!-- Relaciones -->
@@ -115,6 +131,6 @@
     <prov:wasAssociatedWith prov:activity="ex:enrich_l1booksstage2_with_isbn"
                             prov:agent="ex:user_me"/>
     <prov:wasAssociatedWith prov:activity="ex:enrich_l1booksstage2_with_isbn"
-                        prov:agent="ex:postgresql_db"/>
+                            prov:agent="ex:postgresql_db"/>
 
 </prov:document>

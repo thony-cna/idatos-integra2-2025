@@ -1,40 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
-               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+               xmlns:ex="http://example.org/">
 
     <!-- Entidad: Tabla l1usersstage1 -->
     <prov:entity prov:id="ex:l1usersstage1">
         <prov:label>Tabla l1usersstage1</prov:label>
-        <prov:description>
+        <prov:type>prov:Collection</prov:type>
+        <dcterms:description>
             Tabla intermedia generada a partir de los identificadores de usuarios presentes
             en l1ratingsstage1. Asigna un nuevo "User-ID" continuo y no superpuesto con los
             valores existentes en l2users, mediante un desplazamiento basado en el máximo
             identificador (278858). Permite unificar espacios de usuarios entre datasets.
-        </prov:description>
+        </dcterms:description>
 
         <prov:wasDerivedFrom prov:entity="ex:l1ratingsstage1"/>
         <prov:wasDerivedFrom prov:entity="ex:l2users"/>
 
-        <!-- Columnas -->
-        <prov:columns>
-            <prov:column>
-                <prov:name>l1_user_id</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Identificador original del usuario proveniente de l1ratingsstage1.
-                    Se conserva como referencia al espacio de usuarios del dataset Amazon Reviews.
-                </prov:reason>
-            </prov:column>
+        <!-- Miembros (columnas) -->
+        <prov:hadMember prov:entity="ex:l1_user_id"/>
+        <prov:hadMember prov:entity="ex:User_ID"/>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>User-ID</prov:name>
-                <prov:type>xsd:integer</prov:type>
-                <prov:reason>
-                    Nuevo identificador numérico generado para evitar solapamiento con los
-                    identificadores de l2users. Calculado como ROW_NUMBER() + 278858.
-                </prov:reason>
-            </prov:column>
-        </prov:columns>
+    <!-- Definición de columnas como entidades -->
+    <prov:entity prov:id="ex:l1_user_id">
+        <prov:label>l1_user_id</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Identificador original del usuario proveniente de l1ratingsstage1.
+            Se conserva como referencia al espacio de usuarios del dataset Amazon Reviews.
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:User_ID">
+        <prov:label>User-ID</prov:label>
+        <prov:type>xsd:integer</prov:type>
+        <dcterms:description>
+            Nuevo identificador numérico generado para evitar solapamiento con los
+            identificadores de l2users. Calculado como ROW_NUMBER() + 278858.
+        </dcterms:description>
     </prov:entity>
 
     <!-- Actividad -->
@@ -42,13 +47,13 @@
                    prov:startTime="2025-11-03T10:00:00"
                    prov:endTime="2025-11-03T10:22:00">
         <prov:label>Generación de identificadores únicos de usuarios (l1usersstage1)</prov:label>
-        <prov:description>
+        <dcterms:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla l1usersstage1 a partir
             de los usuarios distintos en l1ratingsstage1. Se obtiene el valor máximo de
             "User-ID" en l2users (278858) y se genera un nuevo identificador incremental
             mediante ROW_NUMBER() + 278858, asegurando que los identificadores de usuarios
             sean globalmente únicos entre ambos datasets.
-        </prov:description>
+        </dcterms:description>
         <prov:used prov:entity="ex:l1ratingsstage1"/>
         <prov:used prov:entity="ex:l2users"/>
     </prov:activity>
@@ -59,6 +64,7 @@
         <prov:type>prov:Organization</prov:type>
         <prov:role>Ejecutó la generación de identificadores únicos y verificó la consistencia entre datasets.</prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>PostgreSQL Engine</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>

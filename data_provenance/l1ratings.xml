@@ -1,73 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
-               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+               xmlns:ex="http://example.org/">
 
     <!-- Entidad: Tabla l1ratings -->
     <prov:entity prov:id="ex:l1ratings">
         <prov:label>Tabla l1ratings</prov:label>
-        <prov:description>Tabla consolidada con información de reseñas/valoraciones (ratings) preparada para análisis; incluye metadatos por columna.</prov:description>
-        <prov:creationDate>fecha</prov:creationDate>
-        <prov:source>
-            <prov:url>https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews</prov:url>
-            <prov:downloadDate>2025-09-02T18:39:21</prov:downloadDate>
-        </prov:source>
-        <prov:columns>
-            <prov:column>
-                <prov:name>review_id</prov:name>
-                <prov:type>xsd:integer</prov:type>
-                <prov:reason>Identificador interno de la reseña.</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>id</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Identificador del producto o ítem reseñado.</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>title</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Título del libro reseñado.</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>price</prov:name>
-                <prov:type>xsd:decimal</prov:type>
-                <prov:reason>Precio del libro en el momento de la reseña (cuando está disponible).</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>user_id</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Identificador del usuario que dejó la reseña.</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>profileName</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Nombre de perfil del usuario que emite la reseña.</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>review/helpfulness</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Medida de utilidad de la reseña, expresada como fracción (ejemplo: 3/5 indica que 3 de 5 usuarios consideraron la reseña útil).</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>review/score</prov:name>
-                <prov:type>xsd:integer</prov:type>
-                <prov:reason>Calificación numérica asignada al libro (en una escala de 1 a 5).</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>review/time</prov:name>
-                <prov:type>xsd:integer</prov:type>
-                <prov:reason>Marca temporal de la reseña, expresado con un timestamp (epoch).</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>review/summary</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Breve resumen o título que acompaña la reseña del usuario.</prov:reason>
-            </prov:column>
-            <prov:column>
-                <prov:name>review/text</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>Texto completo de la reseña proporcionado por el usuario.</prov:reason>
-            </prov:column>
-        </prov:columns>
+        <prov:type>prov:Collection</prov:type>
+        <dcterms:description>
+            Tabla consolidada con información de reseñas/valoraciones (ratings) preparada para análisis; incluye metadatos por columna.
+        </dcterms:description>
+        <dcterms:source>https://www.kaggle.com/datasets/mohamedbakhet/amazon-books-reviews</dcterms:source>
+        <dcterms:date>2025-09-02T18:39:21</dcterms:date>
+
+        <!-- Miembros (columnas) -->
+        <prov:hadMember prov:entity="ex:review_id"/>
+        <prov:hadMember prov:entity="ex:id"/>
+        <prov:hadMember prov:entity="ex:title"/>
+        <prov:hadMember prov:entity="ex:price"/>
+        <prov:hadMember prov:entity="ex:user_id"/>
+        <prov:hadMember prov:entity="ex:profileName"/>
+        <prov:hadMember prov:entity="ex:reviewhelpfulness"/>
+        <prov:hadMember prov:entity="ex:review_score"/>
+        <prov:hadMember prov:entity="ex:review_time"/>
+        <prov:hadMember prov:entity="ex:review_summary"/>
+        <prov:hadMember prov:entity="ex:review_text"/>
+    </prov:entity>
+
+    <!-- Definición de las columnas como entidades individuales -->
+    <prov:entity prov:id="ex:review_id">
+        <prov:label>review/id</prov:label>
+        <prov:type>xsd:integer</prov:type>
+        <dcterms:description>Identificador interno de la reseña.</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:id">
+        <prov:label>id</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>Identificador del producto o ítem reseñado.</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:title">
+        <prov:label>title</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>Título del libro reseñado.</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:price">
+        <prov:label>price</prov:label>
+        <prov:type>xsd:decimal</prov:type>
+        <dcterms:description>Precio del libro en el momento de la reseña (cuando está disponible).</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:user_id">
+        <prov:label>user_id</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>Identificador del usuario que dejó la reseña.</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:profileName">
+        <prov:label>profileName</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>Nombre de perfil del usuario que emite la reseña.</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:review_helpfulness">
+        <prov:label>review/helpfulness</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Medida de utilidad de la reseña, expresada como fracción (ejemplo: 3/5 indica que 3 de 5 usuarios consideraron la reseña útil).
+        </dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:review_score">
+        <prov:label>review/score</prov:label>
+        <prov:type>xsd:integer</prov:type>
+        <dcterms:description>Calificación numérica asignada al libro (en una escala de 1 a 5).</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:review_time">
+        <prov:label>review/time</prov:label>
+        <prov:type>xsd:integer</prov:type>
+        <dcterms:description>Marca temporal de la reseña, expresado con un timestamp (epoch).</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:review_summary">
+        <prov:label>review/summary</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>Breve resumen o título que acompaña la reseña del usuario.</dcterms:description>
+    </prov:entity>
+
+    <prov:entity prov:id="ex:review_text">
+        <prov:label>review/text</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>Texto completo de la reseña proporcionado por el usuario.</dcterms:description>
     </prov:entity>
 
     <!-- Actividad: Creación de l1ratings -->
@@ -75,7 +102,9 @@
                    prov:startTime="2025-10-23T13:30:00"
                    prov:endTime="2025-10-23T13:37:00">
         <prov:label>Generación de l1ratings</prov:label>
-        <prov:description>Proceso de extracción, limpieza y consolidación de datos de reseñas para producir la tabla l1ratings.</prov:description>
+        <dcterms:description>
+            Proceso de extracción, limpieza y consolidación de datos de reseñas para producir la tabla l1ratings.
+        </dcterms:description>
     </prov:activity>
 
     <!-- Agentes involucrados -->
@@ -84,22 +113,26 @@
         <prov:type>prov:Organization</prov:type>
         <prov:role>Responsable de la extracción y limpieza de datos para generar l1ratings.</prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>Postgresql Import</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
-        <prov:role>Herramienta para cargar los datos</prov:role>
+        <prov:role>Herramienta para cargar los datos.</prov:role>
+    </prov:agent>
+
+    <prov:agent prov:id="ex:script_etl">
+        <prov:label>Script ETL</prov:label>
+        <prov:type>prov:SoftwareAgent</prov:type>
+        <prov:role>Script automatizado que ejecuta las transformaciones y cargas.</prov:role>
     </prov:agent>
 
     <!-- Relaciones -->
     <prov:wasGeneratedBy prov:entity="ex:l1ratings"
                          prov:activity="ex:generate_l1ratings"/>
-    <prov:wasDerivedFrom prov:generatedEntity="ex:l1ratings"
-                         prov:usedEntity="ex:raw_ratings_source"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l1ratings"
                             prov:agent="ex:integra2"/>
     <prov:wasAssociatedWith prov:activity="ex:generate_l1ratings"
                             prov:agent="ex:script_etl"/>
-    <prov:used prov:activity="ex:generate_l1ratings"
-               prov:entity="ex:raw_ratings_source"/>
-
+    <prov:wasAssociatedWith prov:activity="ex:generate_l1ratings"
+                            prov:agent="ex:postgresql_db"/>
 </prov:document>

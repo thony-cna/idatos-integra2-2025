@@ -1,82 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
-               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+               xmlns:ex="http://example.org/">
 
     <!-- Entidad: Tabla l2booksstage1 -->
     <prov:entity prov:id="ex:l2booksstage1">
         <prov:label>Tabla l2booksstage1</prov:label>
-        <prov:description>
+        <prov:type>prov:Collection</prov:type>
+        <dcterms:description>
             Tabla intermedia derivada de l2books. Se aplica un proceso de limpieza y normalización
             de texto sobre los campos ISBN, Book-Title, Book-Author y publisher, garantizando consistencia
             en formato, mayúsculas y validez estructural del identificador ISBN-10.
             Esta tabla prepara los datos para la integración posterior con l1books.
-        </prov:description>
+        </dcterms:description>
 
         <prov:wasDerivedFrom prov:entity="ex:l2books"/>
 
-        <!-- Columnas -->
-        <prov:columns>
+        <!-- Miembros (columnas) -->
+        <prov:hadMember prov:entity="ex:isbn"/>
+        <prov:hadMember prov:entity="ex:Book_Title"/>
+        <prov:hadMember prov:entity="ex:Book_Author"/>
+        <prov:hadMember prov:entity="ex:Year_Of_Publication"/>
+        <prov:hadMember prov:entity="ex:publisher"/>
+        <prov:hadMember prov:entity="ex:Image_URL_L"/>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>isbn</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Identificador único del libro. Se normalizó eliminando caracteres extra, 
-                    recortando al formato ISBN-10 válido y convirtiendo a mayúsculas. 
-                    Se eliminaron registros con ISBN inválidos o no conformes a la expresión ^[0-9]{9}[0-9X]$.
-                    Es esencial para el matching entre fuentes.
-                </prov:reason>
-            </prov:column>
+    <!-- Definición de columnas -->
+    <prov:entity prov:id="ex:isbn">
+        <prov:label>isbn</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Identificador único del libro. Se normalizó eliminando caracteres extra, 
+            recortando al formato ISBN-10 válido y convirtiendo a mayúsculas. 
+            Se eliminaron registros con ISBN inválidos o no conformes a la expresión ^[0-9]{9}[0-9X]$.
+            Es esencial para el matching entre fuentes.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>Book-Title</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Se conserva como título principal. Fue normalizado aplicando conversión a mayúsculas,
-                    eliminación de tildes y puntuación, supresión de paréntesis y corchetes, y compresión de espacios.
-                    Esto garantiza la comparabilidad con títulos provenientes de l1books.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:Book_Title">
+        <prov:label>Book-Title</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Se conserva como título principal. Fue normalizado aplicando conversión a mayúsculas,
+            eliminación de tildes y puntuación, supresión de paréntesis y corchetes, y compresión de espacios.
+            Esto garantiza la comparabilidad con títulos provenientes de l1books.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>Book-Author</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Representa el nombre del autor del libro. Se aplicó el mismo proceso de normalización que en el título:
-                    conversión a mayúsculas, eliminación de acentos, puntuación y caracteres especiales.
-                    Es un atributo clave para la deduplicación y el matching semántico.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:Book_Author">
+        <prov:label>Book-Author</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Representa el nombre del autor del libro. Se aplicó el mismo proceso de normalización que en el título:
+            conversión a mayúsculas, eliminación de acentos, puntuación y caracteres especiales.
+            Es un atributo clave para la deduplicación y el matching semántico.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>Year-Of-Publication</prov:name>
-                <prov:type>xsd:gYear</prov:type>
-                <prov:reason>
-                    Año de publicación del libro. Se mantiene sin transformación en esta etapa,
-                    ya que su formato es consistente en la fuente original.
-                    Se usará para validaciones temporales y reglas de matching (R1–R2).
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:Year_Of_Publication">
+        <prov:label>Year-Of-Publication</prov:label>
+        <prov:type>xsd:gYear</prov:type>
+        <dcterms:description>
+            Año de publicación del libro. Se mantiene sin transformación en esta etapa,
+            ya que su formato es consistente en la fuente original.
+            Se usará para validaciones temporales y reglas de matching (R1–R2).
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>publisher</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Editorial del libro. Fue normalizada para eliminar puntuación, tildes, 
-                    paréntesis y corchetes, y convertir a mayúsculas, permitiendo agrupar editoriales equivalentes.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:publisher">
+        <prov:label>publisher</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Editorial del libro. Fue normalizada para eliminar puntuación, tildes, 
+            paréntesis y corchetes, y convertir a mayúsculas, permitiendo agrupar editoriales equivalentes.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>Image-URL-L</prov:name>
-                <prov:type>xsd:anyURI</prov:type>
-                <prov:reason>
-                    URL de la imagen de portada en tamaño grande. Se conserva sin modificaciones,
-                    ya que no afecta la integración y puede utilizarse para visualización o validación.
-                </prov:reason>
-            </prov:column>
-
-        </prov:columns>
+    <prov:entity prov:id="ex:Image_URL_L">
+        <prov:label>Image-URL-L</prov:label>
+        <prov:type>xsd:anyURI</prov:type>
+        <dcterms:description>
+            URL de la imagen de portada en tamaño grande. Se conserva sin modificaciones,
+            ya que no afecta la integración y puede utilizarse para visualización o validación.
+        </dcterms:description>
     </prov:entity>
 
     <!-- Actividad -->
@@ -84,14 +91,14 @@
                    prov:startTime="2025-11-01T10:00:00"
                    prov:endTime="2025-11-01T10:10:00">
         <prov:label>Normalización y validación de tabla l2books → l2booksstage1</prov:label>
-        <prov:description>
+        <dcterms:description>
             Proceso SQL ejecutado en PostgreSQL que crea l2booksstage1 a partir de l2books.
             Se aplicaron transformaciones sintácticas y validaciones estructurales:
             - Normalización de texto en Book-Title, Book-Author y publisher
               (eliminando tildes, sustitución de "ñ" por "n", signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas).
             - Limpieza del ISBN mediante expresiones regulares, truncamiento al formato ISBN-10 válido
               y eliminación de registros no conformes o duplicados potenciales.
-        </prov:description>
+        </dcterms:description>
         <prov:used prov:entity="ex:l2books"/>
     </prov:activity>
 
@@ -101,12 +108,14 @@
         <prov:type>prov:Organization</prov:type>
         <prov:role>Encargado del diseño y ejecución del proceso de limpieza y validación de l2booksstage1.</prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>PostgreSQL Engine</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Motor de base de datos que ejecuta las consultas SQL de normalización y validación.</prov:role>
     </prov:agent>
-        <prov:agent prov:id="ex:unaccent_extension">
+
+    <prov:agent prov:id="ex:unaccent_extension">
         <prov:label>PostgreSQL unaccent extension</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Extensión utilizada para eliminar tildes y diacríticos de los textos durante la normalización.</prov:role>

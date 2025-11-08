@@ -1,106 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <prov:document xmlns:prov="http://www.w3.org/ns/prov#"
-               xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+               xmlns:dcterms="http://purl.org/dc/terms/"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+               xmlns:ex="http://example.org/">
 
     <!-- Entidad: Tabla l1booksstage1 -->
     <prov:entity prov:id="ex:l1booksstage1">
         <prov:label>Tabla l1booksstage1</prov:label>
-        <prov:description>
+        <prov:type>prov:Collection</prov:type>
+        <dcterms:description>
             Tabla intermedia generada a partir de l1books, donde se aplican procesos de normalización
             sintáctica y limpieza de texto sobre los campos title, authors, publisher y publisheddate.
             Su objetivo es estandarizar formatos, eliminar caracteres no deseados y preparar los datos
             para el proceso de matching e integración posterior.
-        </prov:description>
-        
+        </dcterms:description>
+
         <prov:wasDerivedFrom prov:entity="ex:l1books"/>
 
-        <!-- Columnas conservadas y normalizadas -->
-        <prov:columns>
+        <!-- Columnas como miembros -->
+        <prov:hadMember prov:entity="ex:title"/>
+        <prov:hadMember prov:entity="ex:description"/>
+        <prov:hadMember prov:entity="ex:authors"/>
+        <prov:hadMember prov:entity="ex:image"/>
+        <prov:hadMember prov:entity="ex:previewlink"/>
+        <prov:hadMember prov:entity="ex:publisher"/>
+        <prov:hadMember prov:entity="ex:publisheddate"/>
+        <prov:hadMember prov:entity="ex:infolink"/>
+        <prov:hadMember prov:entity="ex:categories"/>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>title</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Se conserva como identificador principal del libro. Fue normalizado eliminando tildes, sustitución de "ñ" por "n",
-                    signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
-                    Esto garantiza comparabilidad y evita duplicados por diferencias de formato.
-                </prov:reason>
-            </prov:column>
+    <!-- Columnas (definidas como entidades individuales) -->
+    <prov:entity prov:id="ex:title">
+        <prov:label>title</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Se conserva como identificador principal del libro. Fue normalizado eliminando tildes, sustitución de "ñ" por "n",
+            signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
+            Esto garantiza comparabilidad y evita duplicados por diferencias de formato.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>description</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Se mantiene sin transformación, pues contiene texto descriptivo libre.
-                    Permite enriquecer la información bibliográfica en etapas posteriores.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:description">
+        <prov:label>description</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Se mantiene sin transformación, pues contiene texto descriptivo libre.
+            Permite enriquecer la información bibliográfica en etapas posteriores.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>authors</prov:name>
-                <prov:type>xsd:string[]</prov:type>
-                <prov:reason>
-                    Se conserva como lista de autores, aplicando normalización: eliminando tildes, sustitución de "ñ" por "n",
-                    signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
-                    Esto facilita el emparejamiento y agrupamiento de autores equivalentes.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:authors">
+        <prov:label>authors</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Se conserva como lista de autores, aplicando normalización: eliminando tildes, sustitución de "ñ" por "n",
+            signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
+            Esto facilita el emparejamiento y agrupamiento de autores equivalentes.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>image</prov:name>
-                <prov:type>xsd:anyURI</prov:type>
-                <prov:reason>
-                    Se mantiene sin cambios; representa el enlace a la imagen de portada original.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:image">
+        <prov:label>image</prov:label>
+        <prov:type>xsd:anyURI</prov:type>
+        <dcterms:description>
+            Se mantiene sin cambios; representa el enlace a la imagen de portada original.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>previewlink</prov:name>
-                <prov:type>xsd:anyURI</prov:type>
-                <prov:reason>
-                    Se conserva sin alteraciones. Permite mantener la referencia a la vista previa del libro
-                    proveniente del dataset original.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:previewlink">
+        <prov:label>previewlink</prov:label>
+        <prov:type>xsd:anyURI</prov:type>
+        <dcterms:description>
+            Se conserva sin alteraciones. Permite mantener la referencia a la vista previa del libro
+            proveniente del dataset original.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>publisher</prov:name>
-                <prov:type>xsd:string</prov:type>
-                <prov:reason>
-                    Se conserva tras aplicar normalización de texto: eliminando tildes, sustitución de "ñ" por "n",
-                    signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
-                    Esto permite unificar editoriales con variantes de nombre.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:publisher">
+        <prov:label>publisher</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Se conserva tras aplicar normalización de texto: eliminando tildes, sustitución de "ñ" por "n",
+            signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
+            Esto permite unificar editoriales con variantes de nombre.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>publisheddate</prov:name>
-                <prov:type>xsd:gYear</prov:type>
-                <prov:reason>
-                    Se conserva extrayendo únicamente el año cuando el valor original incluye fecha completa
-                    o timestamp. Los registros con valores inválidos o con carácter “?” fueron reemplazados
-                    por NULL. Se utiliza para la comparación temporal en el matching.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:publisheddate">
+        <prov:label>publisheddate</prov:label>
+        <prov:type>xsd:gYear</prov:type>
+        <dcterms:description>
+            Se conserva extrayendo únicamente el año cuando el valor original incluye fecha completa
+            o timestamp. Los registros con valores inválidos o con carácter “?” fueron reemplazados
+            por NULL. Se utiliza para la comparación temporal en el matching.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>infolink</prov:name>
-                <prov:type>xsd:anyURI</prov:type>
-                <prov:reason>
-                    Enlace informativo original del libro. Se mantiene sin alteraciones.
-                </prov:reason>
-            </prov:column>
+    <prov:entity prov:id="ex:infolink">
+        <prov:label>infolink</prov:label>
+        <prov:type>xsd:anyURI</prov:type>
+        <dcterms:description>
+            Enlace informativo original del libro. Se mantiene sin alteraciones.
+        </dcterms:description>
+    </prov:entity>
 
-            <prov:column>
-                <prov:name>categories</prov:name>
-                <prov:type>xsd:string[]</prov:type>
-                <prov:reason>
-                    Lista de categorías o géneros. Se mantiene sin limpieza en esta etapa, pues puede usarse
-                    para análisis o enriquecimiento posterior.
-                </prov:reason>
-            </prov:column>
-
-        </prov:columns>
+    <prov:entity prov:id="ex:categories">
+        <prov:label>categories</prov:label>
+        <prov:type>xsd:string</prov:type>
+        <dcterms:description>
+            Lista de categorías o géneros. Se mantiene sin limpieza en esta etapa, pues puede usarse
+            para análisis o enriquecimiento posterior.
+        </dcterms:description>
     </prov:entity>
 
     <!-- ACTIVIDAD -->
@@ -108,12 +118,12 @@
                    prov:startTime="2025-11-01T10:00:00"
                    prov:endTime="2025-11-01T10:40:00">
         <prov:label>Normalización de tabla l1books → l1booksstage1</prov:label>
-        <prov:description>
+        <dcterms:description>
             Proceso de transformación SQL ejecutado en PostgreSQL para limpiar y normalizar los textos
             de l1books. Incluye eliminación de tildes mediante la extensión unaccent, sustitución de "Ñ"
             por "N", eliminación de signos y puntuación, supresión de contenido entre paréntesis o corchetes,
             y compresión de espacios. En publisheddate se extrajo únicamente el año válido.
-        </prov:description>
+        </dcterms:description>
         <prov:used prov:entity="ex:l1books"/>
     </prov:activity>
 
@@ -123,11 +133,13 @@
         <prov:type>prov:Organization</prov:type>
         <prov:role>Encargado del diseño y ejecución del proceso de normalización.</prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:postgresql_db">
         <prov:label>PostgreSQL Engine</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Motor de base de datos que ejecuta las consultas SQL de limpieza y transformación.</prov:role>
     </prov:agent>
+
     <prov:agent prov:id="ex:unaccent_extension">
         <prov:label>PostgreSQL unaccent extension</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
@@ -144,5 +156,4 @@
                             prov:agent="ex:postgresql_db"/>
     <prov:wasAssociatedWith prov:activity="ex:normalize_l1booksstage1"
                             prov:agent="ex:unaccent_extension"/>
-
 </prov:document>
