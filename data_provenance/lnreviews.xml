@@ -7,12 +7,12 @@
         <prov:label>Tabla lnreviews</prov:label>
         <prov:description>
             Tabla final de reseñas integrada que combina valoraciones de usuarios
-            provenientes de los datasets l2_ratings (Books Dataset) y l1ratingsstage1
+            provenientes de los datasets l2ratings (Books Dataset) y l1ratingsstage1
             (Amazon Books Reviews). Las reseñas se unifican bajo un esquema común
             con identificadores de usuario y libro consistentes dentro del modelo LN.
         </prov:description>
 
-        <prov:wasDerivedFrom prov:entity="ex:l2_ratings"/>
+        <prov:wasDerivedFrom prov:entity="ex:l2ratings"/>
         <prov:wasDerivedFrom prov:entity="ex:l1ratingsstage1"/>
         <prov:wasDerivedFrom prov:entity="ex:l1usersstage1"/>
         <prov:wasDerivedFrom prov:entity="ex:lnbooks"/>
@@ -24,7 +24,7 @@
                 <prov:type>xsd:integer</prov:type>
                 <prov:reason>
                     Identificador único del usuario dentro del sistema LN.
-                    Proviene directamente de l2_ratings y, en el caso de las reseñas l1,
+                    Proviene directamente de l2ratings y, en el caso de las reseñas l1,
                     se obtiene mediante la unión entre l1ratingsstage1 y l1usersstage1.
                 </prov:reason>
             </prov:column>
@@ -33,7 +33,7 @@
                 <prov:name>isbn</prov:name>
                 <prov:type>xsd:string</prov:type>
                 <prov:reason>
-                    Identificador del libro reseñado. Proviene de l2_ratings o de la columna id
+                    Identificador del libro reseñado. Proviene de l2ratings o de la columna id
                     en l1ratingsstage1, que se corresponde con el ISBN normalizado.
                 </prov:reason>
             </prov:column>
@@ -43,7 +43,7 @@
                 <prov:type>xsd:integer</prov:type>
                 <prov:reason>
                     Valoración numérica del usuario hacia el libro.
-                    Corresponde a Book-Rating en l2_ratings y a review/score en l1ratingsstage1.
+                    Corresponde a Book-Rating en l2ratings y a review/score en l1ratingsstage1.
                 </prov:reason>
             </prov:column>
         </prov:columns>
@@ -56,15 +56,18 @@
         <prov:label>Integración y depuración de reseñas (lnreviews)</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla lnreviews,
-            unificando las reseñas provenientes de l2_ratings y l1ratingsstage1.
+            unificando las reseñas provenientes de l2ratings y l1ratingsstage1.
             La integración constó de tres etapas:
-            (1) Inserción directa de registros de l2_ratings con campos User-ID, ISBN y Book-Rating.
+            (1) Inserción directa de registros de l2ratings con campos User-ID, ISBN y Book-Rating.
             (2) Inserción de registros de l1ratingsstage1 tras un cruce con l1usersstage1
                 para mapear user_id → User-ID y asegurar consistencia global en la clave de usuario.
+            Todos los registros insertados fueron depurados y normalizados previamente: se verificó el formato ISBN
+            (normalización de guiones/espacios y validación básica), se convirtieron los ISBN a mayúsculas
+            y se estandarizaron los campos de usuario y rating para garantizar coherencia entre fuentes.
             (3) Eliminación de reseñas sin correspondencia con ningún libro en lnbooks,
                 asegurando integridad referencial dentro del modelo LN.
         </prov:description>
-        <prov:used prov:entity="ex:l2_ratings"/>
+        <prov:used prov:entity="ex:l2ratings"/>
         <prov:used prov:entity="ex:l1ratingsstage1"/>
         <prov:used prov:entity="ex:l1usersstage1"/>
         <prov:used prov:entity="ex:lnbooks"/>

@@ -6,12 +6,12 @@
     <prov:entity prov:id="ex:l1ratingsstage1">
         <prov:label>Tabla l1ratingsstage1</prov:label>
         <prov:description>
-            Tabla intermedia derivada de l1_ratings. Contiene las reseñas limpias, normalizadas y unificadas 
+            Tabla intermedia derivada de l1ratings. Contiene las reseñas limpias, normalizadas y unificadas 
             por usuario y libro. Se aplicaron filtros de duplicados, normalización de título, validación del 
             identificador ISBN y transformación de escala de puntuación de 1–5 a 1–10.
         </prov:description>
         
-        <prov:wasDerivedFrom prov:entity="ex:l1_ratings"/>
+        <prov:wasDerivedFrom prov:entity="ex:l1ratings"/>
 
         <!-- Columnas -->
         <prov:columns>
@@ -46,7 +46,7 @@
 
             <prov:column>
                 <prov:name>review/score</prov:name>
-                <prov:type>xsd:decimal</prov:type>
+                <prov:type>xsd:integer</prov:type>
                 <prov:reason>
                     Calificación de la reseña. Se transformó la escala original (1–5) a una escala común (1–10)
                     mediante multiplicación por 2, asegurando compatibilidad con otras fuentes.
@@ -69,7 +69,7 @@
             - Validación del ISBN (formato 10 caracteres, conversión a mayúsculas)
             - Ajuste de escala de puntuación (×2)
         </prov:description>
-        <prov:used prov:entity="ex:l1_ratings"/>
+        <prov:used prov:entity="ex:l1ratings"/>
     </prov:activity>
     <prov:activity prov:id="ex:enrich_l1booksstage2_with_isbn"
                 prov:startTime="2025-11-06T13:02:00"

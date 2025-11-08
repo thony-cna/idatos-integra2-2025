@@ -6,13 +6,13 @@
     <prov:entity prov:id="ex:l1booksstage1">
         <prov:label>Tabla l1booksstage1</prov:label>
         <prov:description>
-            Tabla intermedia generada a partir de l1_books, donde se aplican procesos de normalización
+            Tabla intermedia generada a partir de l1books, donde se aplican procesos de normalización
             sintáctica y limpieza de texto sobre los campos title, authors, publisher y publisheddate.
             Su objetivo es estandarizar formatos, eliminar caracteres no deseados y preparar los datos
             para el proceso de matching e integración posterior.
         </prov:description>
         
-        <prov:wasDerivedFrom prov:entity="ex:l1_books"/>
+        <prov:wasDerivedFrom prov:entity="ex:l1books"/>
 
         <!-- Columnas conservadas y normalizadas -->
         <prov:columns>
@@ -38,7 +38,7 @@
 
             <prov:column>
                 <prov:name>authors</prov:name>
-                <prov:type>xsd:string</prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>
                     Se conserva como lista de autores, aplicando normalización: eliminando tildes, sustitución de "ñ" por "n",
                     signos de puntuación, paréntesis, corchetes y espacios múltiples; convertido a mayúsculas.
@@ -55,7 +55,7 @@
             </prov:column>
 
             <prov:column>
-                <prov:name>previewLink</prov:name>
+                <prov:name>previewlink</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
                     Se conserva sin alteraciones. Permite mantener la referencia a la vista previa del libro
@@ -84,7 +84,7 @@
             </prov:column>
 
             <prov:column>
-                <prov:name>infoLink</prov:name>
+                <prov:name>infolink</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
                     Enlace informativo original del libro. Se mantiene sin alteraciones.
@@ -93,7 +93,7 @@
 
             <prov:column>
                 <prov:name>categories</prov:name>
-                <prov:type>xsd:string</prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>
                     Lista de categorías o géneros. Se mantiene sin limpieza en esta etapa, pues puede usarse
                     para análisis o enriquecimiento posterior.
@@ -107,14 +107,14 @@
     <prov:activity prov:id="ex:normalize_l1booksstage1"
                    prov:startTime="2025-11-01T10:00:00"
                    prov:endTime="2025-11-01T10:40:00">
-        <prov:label>Normalización de tabla l1_books → l1booksstage1</prov:label>
+        <prov:label>Normalización de tabla l1books → l1booksstage1</prov:label>
         <prov:description>
             Proceso de transformación SQL ejecutado en PostgreSQL para limpiar y normalizar los textos
-            de l1_books. Incluye eliminación de tildes mediante la extensión unaccent, sustitución de "Ñ"
+            de l1books. Incluye eliminación de tildes mediante la extensión unaccent, sustitución de "Ñ"
             por "N", eliminación de signos y puntuación, supresión de contenido entre paréntesis o corchetes,
             y compresión de espacios. En publisheddate se extrajo únicamente el año válido.
         </prov:description>
-        <prov:used prov:entity="ex:l1_books"/>
+        <prov:used prov:entity="ex:l1books"/>
     </prov:activity>
 
     <!-- Agentes involucrados -->
@@ -128,8 +128,7 @@
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Motor de base de datos que ejecuta las consultas SQL de limpieza y transformación.</prov:role>
     </prov:agent>
-        </prov:agent>
-        <prov:agent prov:id="ex:unaccent_extension">
+    <prov:agent prov:id="ex:unaccent_extension">
         <prov:label>PostgreSQL unaccent extension</prov:label>
         <prov:type>prov:SoftwareAgent</prov:type>
         <prov:role>Extensión utilizada para eliminar tildes y diacríticos de los textos durante la normalización.</prov:role>

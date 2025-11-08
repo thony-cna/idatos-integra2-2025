@@ -7,12 +7,12 @@
         <prov:label>Tabla lnusers</prov:label>
         <prov:description>
             Tabla unificada de usuarios resultante de la combinación de los espacios
-            de identificadores de l2_users (Books Dataset) y l1usersstage1 (Amazon Reviews).
+            de identificadores de l2users (Books Dataset) y l1usersstage1 (Amazon Reviews).
             Representa el conjunto completo de usuarios normalizados dentro del modelo
             integrado. Cada registro mantiene el campo "user_id" único y consistente entre ambos orígenes.
         </prov:description>
 
-        <prov:wasDerivedFrom prov:entity="ex:l2_users"/>
+        <prov:wasDerivedFrom prov:entity="ex:l2users"/>
         <prov:wasDerivedFrom prov:entity="ex:l1usersstage1"/>
 
         <!-- Columnas -->
@@ -22,7 +22,7 @@
                 <prov:type>xsd:integer</prov:type>
                 <prov:reason>
                     Identificador unificado del usuario.
-                    Proviene directamente de los conjuntos l2_users y l1usersstage1.
+                    Proviene directamente de los conjuntos l2users y l1usersstage1.
                     No sufre transformación alguna, garantizando compatibilidad.
                 </prov:reason>
             </prov:column>
@@ -36,11 +36,11 @@
         <prov:label>Unificación de identificadores de usuarios (lnusers)</prov:label>
         <prov:description>
             Proceso SQL ejecutado en PostgreSQL para crear la tabla lnusers
-            unificando los identificadores de usuario de l2_users y l1usersstage1
+            unificando los identificadores de usuario de l2users y l1usersstage1
             mediante la operación UNION ALL. La operación mantiene la totalidad de
             los registros y no aplica transformaciones ni filtrado adicional.
         </prov:description>
-        <prov:used prov:entity="ex:l2_users"/>
+        <prov:used prov:entity="ex:l2users"/>
         <prov:used prov:entity="ex:l1usersstage1"/>
     </prov:activity>
 

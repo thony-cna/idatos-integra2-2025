@@ -93,7 +93,7 @@
             </prov:column>
             <prov:column>
                 <prov:name>genres</prov:name>
-                <prov:type>xsd:string</prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>
                     Categorías o géneros del libro. 
                     Provenientes de l1booksstage2.

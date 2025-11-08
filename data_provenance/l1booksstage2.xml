@@ -39,7 +39,7 @@
 
             <prov:column>
                 <prov:name>authors</prov:name>
-                <prov:type>xsd:string</prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>
                     Incluido como parte de la clave de deduplicación (LOWER(authors::text)).
                     Se mantiene porque aporta contexto semántico y relevancia en la integración.
@@ -56,7 +56,7 @@
             </prov:column>
 
             <prov:column>
-                <prov:name>previewLink</prov:name>
+                <prov:name>previewlink</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
                     Conservado si no es nulo. Es una referencia externa al recurso original
@@ -83,7 +83,7 @@
             </prov:column>
 
             <prov:column>
-                <prov:name>infoLink</prov:name>
+                <prov:name>infolink</prov:name>
                 <prov:type>xsd:anyURI</prov:type>
                 <prov:reason>
                     Conservado si tiene valor no nulo; referencia informativa complementaria
@@ -93,7 +93,7 @@
 
             <prov:column>
                 <prov:name>categories</prov:name>
-                <prov:type>xsd:string</prov:type>
+                <prov:type>xsd:string[]</prov:type>
                 <prov:reason>
                     Conservado si contiene géneros o categorías válidas.
                     Puede emplearse para análisis de similitud o clasificación temática.
